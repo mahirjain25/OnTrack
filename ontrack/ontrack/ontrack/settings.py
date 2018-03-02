@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import os
 import django.contrib.auth
 
-django.contrib.auth.LOGIN_URL = '/login'
+django.contrib.auth.LOGIN_URL = '/accounts/login'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'login',
     'pages',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -81,10 +82,10 @@ WSGI_APPLICATION = 'ontrack.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR + '/loginapp.sqlite',
-        'USER' : '',
-        'PASSWORD' : '',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ontrack',
+        'USER' : 'django',
+        'PASSWORD' : 'password',
         'HOST': '',
         'PORT': '',
 

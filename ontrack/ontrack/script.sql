@@ -1,0 +1,10 @@
+DROP DATABASE IF EXISTS ontrack;
+CREATE DATABASE ontrack
+    DEFAULT CHARACTER SET utf8
+    DEFAULT COLLATE utf8_general_ci;
+
+USE ontrack;
+GRANT ALL PRIVILEGES ON ontrack.* TO 'django'@'localhost' IDENTIFIED BY 'password'
+
+WITH GRANT OPTION;
+FLUSH PRIVILEGES;
