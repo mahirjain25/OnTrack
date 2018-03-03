@@ -2,13 +2,51 @@
 
 
 {% block content %}
+
+<style>
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form_signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form_signin .form-control:focus {
+  z-index: 2;
+}
+.form_signin .field input[type="field"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form_signin .field input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+</style>
+
 <h1>Login</h1>
-  <form action="" method="POST">
-    <div class="form-group">
+  <form class="form-signin" method = "post">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       {% csrf_token %}
-	  {{ form.as_p }}
-    </div>
-    <button type="submit" class="btn btn-primary" href="/accounts/dashboard">Submit</button>
+      <div class = "field">
+      	{{ form.as_p }}
+  	  </div>
+      <button class="btn btn-lg btn-primary btn-block" action = "{% url 'dashboard' %}" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
   </form>
 
-{% endblock %}
+{% endblock content %}
