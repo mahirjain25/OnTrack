@@ -17,8 +17,8 @@ django.contrib.auth.LOGIN_URL = '/accounts/login'
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-LOGIN_REDIRECT_URL = 'dashboard'
-LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = ''
+LOGOUT_REDIRECT_URL = ''
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -29,6 +29,17 @@ SECRET_KEY = '5p0=qyfvll%5b37mpou(+@kmmr^60*o=^7oj@o%f52zz=3=rud'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+
+EMAIL_USE_TLS = False
+DEFAULT_FROM_EMAIL = 'test@gmail.com'
+SERVER_EMAIL = 'test@gmail.com'
+EMAIL_HOST = 'aspmx.l.google.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'test@gmail.com'
+EMAIL_HOST_PASSWORD = 'password'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 
 
 # Application definition

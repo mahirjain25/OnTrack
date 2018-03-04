@@ -45,6 +45,12 @@
       <div class = "field">
       	{{ form.as_p }}
   	  </div>
+
+	  <input type="hidden" name="this_is_the_login_form" value="1" />
+
+		<p style="margin-left:0px;">
+		    <a href="{% url 'password_reset' %}">Forgot password?</a>
+		</p>
       <button class="btn btn-lg btn-primary btn-block" action = "{% url 'dashboard' %}" type="submit">Sign in</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
   </form>
