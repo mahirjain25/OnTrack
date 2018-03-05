@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 
-{% block content %}
+
+{% block content%}
 
 <head>
-	<title>{{ user.username }}'s Reminders
+	<title> New Reminder
 	</title>	
 
   <style>
@@ -26,31 +27,28 @@
 
   </style>
 </head>
+
+
 <br>
 <main role="main" class="container">
       <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
         <div class="lh-100">
-          <h4 class="mb-0 text-white lh-100">Reminders</h4>
-          <a href="{% url 'new_reminder' %}"> <small>New Reminder</small></a>
+          <h4 class="mb-0 text-white lh-100">New Reminder</h4>
+          <small> <a href="{% url 'new_reminder' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> </small>
         </div>
       </div>
 
       <div class="my-3 p-3 bg-white rounded box-shadow">
-        <h6 class="border-bottom border-gray pb-2 mb-0">Recent</h6>
-        {% for reminder in reminders%}
           <div class="media text-muted pt-3">
             <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-              <strong class="d-block text-gray-dark">{{ reminder.title }}</strong>
-              <small>due on: {{reminder.due_date}}</small>
-              <br>
-               {{reminder.text}}
-            </p>
+            <form method = "POST" class = "post-form">
+            	{% csrf_token %}
+            	{{ form.as_p }}
+            	<button type="submit" class="save btn btn-default">Save</button>
+
+            	
+            </form>
           </div>
-        {% endfor %}
-        <small class="d-block text-right mt-3">
-          <a href="#">All reminders</a>
-        </small>
       </div>
 </main>
-{% endblock%}
+{% endblock %}
