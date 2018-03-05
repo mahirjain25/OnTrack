@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<head>
+	<title>{{ user.username }}'s Reminders
+	</title>	
+</head>
+
+<div>
+    <h1><a href="/">Reminders</a></h1>
+</div>
+<br>
+{% for reminder in reminders %}
+    <div>
+        <p>created: {{ reminder.created_date }}</p>
+        <h1><a href="">{{ reminder.title }}</a></h1>
+        <p>due on: {{ reminder.due_date }}</p>
+        <p>{{ reminder.text|linebreaksbr }}</p>
+    </div>
+{% endfor %}
+
+
+{% endblock%}

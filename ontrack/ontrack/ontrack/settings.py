@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'login',
     'pages',
     'accounts',
+    'reminders',
 ]
 
 MIDDLEWARE = [

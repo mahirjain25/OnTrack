@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content%}
+
+
+<head>
+  <title>{{ user.username }}'s Dashboard
+  </title>  
+</head>
+
+
 <main role="main">
 
       <section class="jumbotron text-center">
@@ -27,7 +35,9 @@
 
             <div class="col-md-4">
               <div class="card mb-4 box-shadow">
-                <img class="card-img-top" src="http://lh3.ggpht.com/-VICCRzay53A/Ti7HveHX4ZI/AAAAAAAAAI8/SDrQLdwukR4/lightbulb.jpg?imgmax=800" alt="Card image cap">
+                <a href = "{% url 'reminders' %}">
+                <img class="card-img-top" src="http://lh3.ggpht.com/-VICCRzay53A/Ti7HveHX4ZI/AAAAAAAAAI8/SDrQLdwukR4/lightbulb.jpg?imgmax=800" alt="Card image cap" >
+              </a>
                 <div class="card-body">
                   <p class="card-text"> Reminders</p>
                 </div>
