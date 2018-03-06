@@ -25,7 +25,6 @@ followed by
 ```
 sudo mysql_install_db
 sudo mysql_secure_installation
-sudo pip install mysqlclient
 ```
 
 Once you have MySQL setup, change directory to `/ontrack/ontrack' and run ```mysql -u root -p < script.sql``` 
