@@ -66,4 +66,11 @@ class Clothes(models.Model):
     tag = models.TextField()
     
     
+class Books(models.Model):
+	isbn = models.IntegerField(primary_key=True,db_column='ISBN')
+	name = models.CharField(db_column='Book Name', max_length=30)
+	author = models.CharField(db_column = 'Author Name',max_length=20)
+	date_issued = models.DateField(db_column='Date of Issue')
+	date_of_return = models.DateField(db_column='Date of Return')
+    
     
