@@ -1,35 +1,111 @@
 <!DOCTYPE html>
 <html>
+<title>OnTrack</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+.w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+.fa-info,.fa-at {font-size:200px}
+</style>
 
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
-<body>	
- <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-      <h5 class="my-0 mr-md-auto font-weight-normal">OnTrack</h5>
-      <nav class="my-2 my-md-0 mr-md-3">
-        <a class="p-2 text-dark" href="{% url 'home' %}">Home</a>
-        <a class="p-2 text-dark" href="{% url 'about' %}">About</a>
-        {% if user.is_authenticated %}
-        <a class="p-2 text-dark" href="{% url 'dashboard' %}">Dashboard</a>
-        	<a class="p-2 text-dark" href="{% url 'logout' %}">Logout</a>
-      	</nav>
-        	
-      	{% else %}
-      		<a class="p-2 text-dark" href="/accounts/login">Login</a>
-      	</nav>
-      	<a class="btn btn-outline-primary" href="/accounts/signup">Sign up</a>
-      		
 
-      	{% endif %}
 
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-red w3-hover-black">Home</a>
+    <a href="#about" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-light-blue">About</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-pale-red">Contact Us</a>
+    {% if user.is_authenticated %}
+    <a href="{% url 'dashboard' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-amber">Dashboard</a>
+    <a href="{% url 'logout' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-right w3-hover-white">Log Out</a>
+  </div>
+    {% else %}
+    <a href="{% url 'login' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-amber">Login</a>
+  </div>
+    {% endif %}
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">About</a>
+    {% if user.is_authenticated %}
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Dashboard</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-right">Log Out</a>
+  </div>
+    {% else %}
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Log In</a>
+  </div>
+    {% endif %}
+</div>
+
+<!-- Header -->
+<header class="w3-container w3-black w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">OnTrack</h1>
+  <h3 class="w3-xlarge w3-padding-large">Your own College Personal Assistant!</h3>
+  {% if not user.is_authenticated %}
+  <button class="w3-button w3-red w3-padding-medium w3-large w3-margin-top">Register Now!</button>
+  {% endif%}
+</header>
+
+<!-- First Grid -->
+<div id="about" class="w3-row-padding w3-padding-64 w3-container w3-light-blue">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>About OnTrack!</h1>
+      <h3 class="w3-padding-32">OnTrack is every college student's dream. The application serves as a personal assistant that helps take care of the small, significant problems in an everyday college student's life. Ever felt like you're running out of time and can't keep up with your daily chores? Need a helping hand? We're here to do exactly that, get you back OnTrack!</h3>
+      </div>
+
+    <div class="w3-third w3-center">
+      <i class="fa fa-info w3-padding-64 w3-text-black"></i>
+    </div>
+  </div>
+</div>
+
+<!-- Second Grid -->
+<div id="contact" class="w3-row-padding w3-pale-red w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-third w3-center">
+      <i class="fa fa-at w3-padding-32 w3-text-red w3-margin-right"></i>
     </div>
 
-    <div class="text-center">
-      {% block content %}{% endblock %}
+    <div class="w3-twothird">
+      <h1>Contact Us</h1>
+      <h3 class="w3-padding-32">At OnTrack, we believe there is always scope for improvement. We'd definitely like to hear from y'all so do feel free to contact us at:</h3>
+      <h5>E-mail: <a href="#">mahirjain25@gmail.com</a></h5>
+      <h5>E-mail: <a href="#">suraj1998@gmail.com</a></h5>
+
     </div>
+  </div>
+</div>
+
+
+
+
+
+<script>
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+
 </body>
 </html>
