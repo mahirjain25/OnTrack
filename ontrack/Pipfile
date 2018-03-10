@@ -12,3 +12,5 @@ url = "https://pypi.python.org/simple"
 [packages]
 
 mysqlclient = "*"
+"geoip2" = "*"
+pyowm = "*"
