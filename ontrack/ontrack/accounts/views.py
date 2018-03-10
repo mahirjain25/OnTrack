@@ -17,12 +17,12 @@ class SignUp(generic.CreateView):
     template_name = 'signup.html'
 
 
-class Dashboard(generic.CreateView):
+def dashboard(request):
 	
 	template_name = 'dashboard.html'
-	#render(request, template_name, {"temp" : temperature, "desc":desc})
+	return render(request, template_name)#, {"temp" : temperature, "desc":desc})
 
-	def get(self, request, *args, **kwargs):
+	'''def get(self, request, *args, **kwargs):
 		g = GeoIP2()
 		ip = None#request.META.get('REMOTE_ADDR', None)
 		if ip:
@@ -38,4 +38,5 @@ class Dashboard(generic.CreateView):
 		context['temp'] = temperature
 		context['desc'] = desc
 		return render(request, 'dashboard.html', {'desc' :desc, 'temp':temperature})
-
+	'''
+	
