@@ -40,7 +40,7 @@ EMAIL_HOST_USER = 'test@gmail.com'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-
+GEOIP_PATH  = "/home/suraj/backup/ontrack/ontrack/location"
 
 # Application definition
 
