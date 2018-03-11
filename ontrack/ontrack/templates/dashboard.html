@@ -20,11 +20,6 @@
     <!--  Light Bootstrap Table core CSS    -->
     <link href="/static/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
 
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="/static/assets/css/demo.css" rel="stylesheet" />
-
-
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -33,8 +28,8 @@
 </head>
 <body>
 
-<div class="wrapper animated fadeInDownBig">
-    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">
+<div class="wrapper animated fadeInLeft">
+    <div class="sidebar" data-color="azure" data-image="#">
 
     <!--
 
@@ -45,58 +40,40 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
+                <a href="#" class="simple-text">
                     Welcome, {{user.username}}
                 </a>
             </div>
 
-            <ul class="nav">
-                <li class="active">
+            <ul class="nav" style="padding-top:50px;">
+                <li class="active" style="padding-top:50px;">
                     <a href="dashboard.html">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
+                        <i class="pe-7s-home"></i>
+                        <p>Dashboard Home</p>
                     </a>
                 </li>
-                <li>
+                <li style="padding-top:50px;">
                     <a href="user.html">
-                        <i class="pe-7s-user"></i>
+                        <i class="pe-7s-id"></i>
                         <p>User Profile</p>
                     </a>
                 </li>
-                <li>
+                <li style="padding-top:50px;">
+                    <a href="/inventory/inventory">
+                        <i class="pe-7s-id"></i>
+                        <p>My Clothes</p>
+                    </a>
+                </li>
+                <li style="padding-top:50px;">
                     <a href="table.html">
-                        <i class="pe-7s-note2"></i>
-                        <p>Table List</p>
+                        <i class="pe-7s-comment"></i>
+                        <p>Give Feedback</p>
                     </a>
                 </li>
-                <li>
-                    <a href="typography.html">
-                        <i class="pe-7s-news-paper"></i>
-                        <p>Typography</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="icons.html">
-                        <i class="pe-7s-science"></i>
-                        <p>Icons</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="maps.html">
-                        <i class="pe-7s-map-marker"></i>
-                        <p>Maps</p>
-                    </a>
-                </li>
-                <li>
+                <li style="padding-top:50px;">
                     <a href="notifications.html">
                         <i class="pe-7s-bell"></i>
                         <p>Notifications</p>
-                    </a>
-                </li>
-				<li class="active-pro">
-                    <a href="upgrade.html">
-                        <i class="pe-7s-rocket"></i>
-                        <p>Upgrade to PRO</p>
                     </a>
                 </li>
             </ul>
@@ -113,7 +90,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Dashboard</a>
+                    <a class="navbar-brand" href="/">OnTrack</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -393,34 +370,10 @@
         </div>
 
 
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+        <footer class="footer" data-color="blue">
+            <div class="container-fluid ">
+                <p class = "text-center" style="font-family: 'Lato';" >
+                 Made with love by team OnTrack!
                 </p>
             </div>
         </footer>
@@ -456,8 +409,8 @@
         	demo.initChartist();
 
         	$.notify({
-            	icon: 'pe-7s-gift',
-            	message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+            	icon: 'pe-7s-smile',
+            	message: "Welcome to your OnTrack Dashboard!"
 
             },{
                 type: 'info',

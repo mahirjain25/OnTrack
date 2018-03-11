@@ -1,4 +1,6 @@
-from django.urls import path
+from django.urls import path,include
 from . import views
 
-urlpatterns = [path('',views.InventoryView.as_view(),name = 'inventory')]
+urlpatterns = [
+path('inventory/',views.InventoryView,name='inventory'),
+path('',include('django.contrib.auth.urls')),]

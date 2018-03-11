@@ -4,5 +4,6 @@ from django.views.generic import TemplateView
 # Create your views here.
 
 
-class InventoryView(TemplateView):
+def InventoryView(request):
 	template_name = 'inventory.html'
+	return render(request,template_name)
