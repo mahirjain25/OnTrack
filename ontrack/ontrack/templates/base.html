@@ -7,10 +7,61 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
 .fa-info,.fa-at {font-size:200px}
+/* Outer */
+.popup {
+width:100%;
+height:100%;
+display:none;
+position:fixed;
+top:0px;
+left:0px;
+background:rgba(0,0,0,0.75);
+}
+/* Inner */
+.popup-inner {
+max-width:700px;
+width:90%;
+padding:40px;
+position:absolute;
+top:50%;
+left:50%;
+-webkit-transform:translate(-50%, -50%);
+transform:translate(-50%, -50%);
+
+border-radius:3px;
+
+}
+/* Close Button */
+.popup-close {
+width:30px;
+height:30px;
+padding-top:4px;
+display:inline-block;
+position:absolute;
+top:0px;
+right:0px;
+transition:ease 0.25s all;
+-webkit-transform:translate(50%, -50%);
+transform:translate(50%, -50%);
+border-radius:1000px;
+background:rgba(0,0,0,0.8);
+font-family:Arial, Sans-Serif;
+font-size:20px;
+text-align:center;
+line-height:100%;
+color:#fff;
+}
+.popup-close:hover {
+-webkit-transform:translate(50%, -50%) rotate(180deg);
+transform:translate(50%, -50%) rotate(180deg);
+background:rgba(0,0,0,1);
+text-decoration:none;
+}
 </style>
 
 <head>
@@ -21,6 +72,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
+  <script>
+function open_dialog() {
+    el = document.getElementById("dialog");
+    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+}
+</script>
   <script >
     $(document).on('click', 'a[href^="#"]', function(e) {
     // target element id
@@ -42,6 +99,124 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
     $('body, html').animate({scrollTop: pos});
 });
   </script>
+  <script type="text/javascript">
+    $(window).scroll(function() {
+    if(mq.matches) {
+        //width of browser is bigger than 700px
+        if ($(this).scrollTop()>100)
+        {
+           if(!$('.fade').is('.hidden')) {
+               $('.fade').stop().animate({ // menu goes out
+                  right: '-20px',
+                  opacity: '0',
+               }).addClass('hidden');
+               $('#button').stop().animate({ // button comes in
+                   right: '30px',
+                   opacity: '1',
+               });
+           }
+        }
+        else
+        {
+            if($('.fade').is('.hidden')) {
+                $('.fade').stop().animate({ // menu comes in
+                   right: '0px',
+                   opacity: '1',
+                }).removeClass('hidden');
+                $('#button').stop().animate({ // button goes out
+                   right: '-20px',
+                   opacity: '0',
+                });
+            }
+        }
+    } else {
+    // the width of browser is less then 700px
+    }
+
+ });
+  </script>
+  <script language="javascript" type="text/javascript">
+<!--
+function popitup(url) {
+    newwindow=window.open(url,'{{title}}','height=200,width=150');
+    if (window.focus) {newwindow.focus()}
+    return false;
+}
+
+// -->
+</script>
+  <script  href = "/assets/"type="text/javascript"></script>
+  <script type="text/javascript">
+    $(function() {
+//----- OPEN
+$('[data-popup-open]').on('click', function(e)  {
+var targeted_popup_class = jQuery(this).attr('data-popup-open');
+$('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+e.preventDefault();
+});
+//----- CLOSE
+$('[data-popup-close]').on('click', function(e)  {
+var targeted_popup_class = jQuery(this).attr('data-popup-close');
+$('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+e.preventDefault();
+});
+$(".popup").click(function(){
+$(".popup").fadeOut(350).removeClass("active");
+});
+$(".popup-inner").click(function(e){
+e.stopPropagation();
+});
+});
+</script>
+
+<script type="text/javascript">
+  var modal = document.getElementById('pop1');
+
+// Get the button that opens the modal
+var btn = document.getElementById("but1");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+} 
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+       $("#test").submit(function(event){
+            $.ajax({
+                 type:"POST",
+                 url:"login",
+                 data: {
+                        'username': $('#test').val('username'),
+                        'password': $('#test').val('password') // from form
+                        },
+                 success: function(){
+                     $('#message').html("<h2>Contact Form Submitted!</h2>") 
+                 }
+            });
+            return false; //<---- move it here
+       });
+
+});
+</script>
+
+                                                                                                                                                                                                                                                    
 </head>
 
 
@@ -77,16 +252,38 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </div>
 
 <!-- Header -->
-<header id ="home" class="w3-container w3-black w3-center" style="padding:128px 16px">
+<header id ="home" class="w3-container w3-black w3-center" style="padding:128px 16px;min-height : 100%; ">
   <h1 class="w3-margin w3-jumbo">OnTrack</h1>
   <h3 class="w3-xlarge w3-padding-large">Your own College Personal Assistant!</h3>
   {% if not user.is_authenticated %}
-  <button class="w3-button w3-red w3-padding-medium w3-large w3-margin-top">Register Now!</button>
+  <a data-popup-open="popup-1" data-toggle="modal" href = "accounts/login">Login</a>
+
+<div class="popup"  id = "pop1" data-popup="popup-1">
+<div class="popup-inner">
+<h1>Login to Your Account</h1><br>
+<form class="form-signin" method = "post">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      {% csrf_token %}
+      <div class = "field">
+        {{ form.as_p }}
+      </div>
+
+    <input type="hidden" name="this_is_the_login_form" value="1" />
+
+    <p style="margin-left:0px;">
+        <a href="{% url 'password_reset' %}">Forgot password?</a>
+    </p>
+      <button class="btn btn-lg btn-primary btn-block" action = "{% url 'dashboard' %}" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+  </form>
+</div>
+</div>
+
   {% endif%}
 </header>
 
 <!-- First Grid -->
-<div id="about" class="w3-row-padding w3-padding-64 w3-container w3-light-blue">
+<div id="about" class="w3-row-padding w3-padding-64 w3-container w3-light-blue" style = "min-height : 100%">
   <div class="w3-content">
     <div class="w3-twothird">
       <h1>About OnTrack!</h1>
@@ -100,19 +297,22 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 </div>
 
 <!-- Second Grid -->
-<div id="contact" class="w3-row-padding w3-pale-red w3-padding-64 w3-container">
+<div id="contact" class="w3-row-padding w3-pale-red w3-padding-64 w3-container" style = "min-height : 100%">
   <div class="w3-content">
     <div class="w3-third w3-center">
       <i class="fa fa-at w3-padding-32 w3-text-red w3-margin-right"></i>
     </div>
 
-    <div class="w3-twothird">
+    <div class="w3-twothird" >
       <h1>Contact Us</h1>
       <h3 class="w3-padding-32">At OnTrack, we believe there is always scope for improvement. We'd definitely like to hear from y'all so do feel free to contact us at:</h3>
       <h5>E-mail: <a href="#">mahirjain25@gmail.com</a></h5>
       <h5>E-mail: <a href="#">suraj1998@gmail.com</a></h5>
 
     </div>
+    <div id="dialog">
+    <p>Dialog content</p>
+  </div>
   </div>
 </div>
 
