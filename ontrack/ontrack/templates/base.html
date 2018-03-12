@@ -225,8 +225,8 @@ $(document).ready(function() {
 
 <!-- Navbar -->
 <div class="w3-top" id = "nv">
-  <div class="w3-bar w3-red w3-card w3-left-align w3-large">
-    <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-red w3-hover-black">Home</a>
+  <div class="w3-bar w3-black w3-card w3-left-align w3-large">
+    <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-white">Home</a>
     <a href="#about" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-light-blue">About</a>
     <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-pale-red">Contact Us</a>
     {% if user.is_authenticated %}
@@ -235,6 +235,8 @@ $(document).ready(function() {
   </div>
     {% else %}
     <a data-popup-open="popup-1" data-toggle="modal" href="accounts/login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-amber">Login</a>
+    <a data-popup-open="popup-1" data-toggle="modal" href="accounts/login" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-amber">Sign Up</a>
+
   </div>
     {% endif %}
 
@@ -247,24 +249,26 @@ $(document).ready(function() {
     <a href="#" class="w3-bar-item w3-button w3-padding-large w3-right">Log Out</a>
   </div>
     {% else %}
-    <a href="accounts/login" class="w3-bar-item w3-button w3-padding-large">Log In</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Log In</a>
+
   </div>
     {% endif %}
 </div>
 
 <!-- Header -->
-<header id ="home" class="w3-container w3-black w3-center" style="padding:128px 16px;min-height : 100%; ">
+<header id ="home" class="w3-container w3-black w3-center" style="padding:300px 16px;min-height : 100%; background-image: url('http://www.tokkoro.com/picsup/2992095-music-disk-macro-gramophone-vinyl___mixed-wallpapers.jpg'); " >
   <h1 class="w3-margin w3-jumbo">OnTrack</h1>
   <h3 class="w3-xlarge w3-padding-large">Your own College Personal Assistant!</h3>
   {% if not user.is_authenticated %}
 <div class="popup"  id = "pop1" data-popup="popup-1">
 <div class="popup-inner">
 <h1>Login to Your Account</h1><br>
-<form class="form-signin" method = "post">
+{% load crispy_forms_tags %}
+<form class="form-signin" method = "post" action="{% url 'login' %}">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       {% csrf_token %}
       <div class = "field">
-        {{ form.as_p }}
+        {{ form1|crispy }}
       </div>
 
     <input type="hidden" name="this_is_the_login_form" value="1" />
@@ -272,7 +276,7 @@ $(document).ready(function() {
     <p style="margin-left:0px;">
         <a href="{% url 'password_reset' %}">Forgot password?</a>
     </p>
-      <button class="btn btn-lg btn-primary btn-block" action = "{% url 'dashboard' %}" type="submit">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block" action = "{% url 'dashboard' %}" type="submit" value  = "sign_in">Sign in</button>
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
   </form>
 </div>
@@ -282,15 +286,17 @@ $(document).ready(function() {
 </header>
 
 <!-- First Grid -->
-<div id="about" class="w3-row-padding w3-padding-64 w3-container w3-light-blue" style = "min-height : 100%">
+
+<div id="about" class="w3-row-padding w3-padding-64 w3-container w3-light-blue" style = "min-height : 100%; background-image: url('https://i.ytimg.com/vi/gKIFk8BJsDc/maxresdefault.jpg'); opacity : 1;>
   <div class="w3-content">
+
     <div class="w3-twothird">
-      <h1>About OnTrack!</h1>
-      <h3 class="w3-padding-32">OnTrack is every college student's dream. The application serves as a personal assistant that helps take care of the small, significant problems in an everyday college student's life. Ever felt like you're running out of time and can't keep up with your daily chores? Need a helping hand? We're here to do exactly that, get you back OnTrack!</h3>
+      <h1 style = "color: #fff">About OnTrack!</h1>
+      <h3 class="w3-padding-32" style = "color: #fff">OnTrack is every college student's dream. The application serves as a personal assistant that helps take care of the small, significant problems in an everyday college student's life. Ever felt like you're running out of time and can't keep up with your daily chores? Need a helping hand? We're here to do exactly that, get you back OnTrack!</h3>
       </div>
 
     <div class="w3-third w3-center">
-      <i class="fa fa-info w3-padding-64 w3-text-black"></i>
+      <i class="fa fa-info w3-padding-64 w3-text-black" style = "color: #fff"></i>
     </div>
   </div>
 </div>

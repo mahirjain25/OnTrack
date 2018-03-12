@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'accounts',
     'reminders',
     'inventory',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
