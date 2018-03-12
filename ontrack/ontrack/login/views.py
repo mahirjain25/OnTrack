@@ -1,33 +1,32 @@
 from django.shortcuts import render_to_response
 #from django.shortcuts import RequestContext
-from django.shortcuts import render
-from django.contrib.auth import login
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
-
+from . import forms
 import json, pdb
 
+def login_user(request):
+    if request.POST:
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-def ajax_login(request):
-    form = AuthenticationForm()
-    if request.method == 'POST':
-        form = AuthenticationForm(None, request.POST)
+        user = authenticate(username = username, password = password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('dashboard')
+    return render(request, 'registration/login.html')
+
+def signup_user(request):
+    if request.POST:
+        form = forms.MyRegistrationForm()
+        form.username = request.POST.get('username')
+        form.password1 = request.POST.get('password1')
+        form.password2 = request.POST.get('password2')
+        form.email = request.POST.get('email')
         if form.is_valid():
-            login(request, form.get_user())
-            return HttpResponse(json.dumps({'success': 'ok'})
-                , mimetype='application/json')
-    return render(request, 'templates/ajax_login.html', {'form': form})
-
-
-def ajax_registration(request):
-    form = RegistrationForm()
-    if request.method == 'POST':
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            return HttpResponse(json.dumps({'success': 'ok', 'mail_activation': True})
-                , mimetype='application/json')
-    return render(request, 'templates/ajax_registration.html', {'form': form})
-
-
-def socialauth_success(request):
-    return render(request, 'templates/socialauth_success.html', {})
+            form.save()
+            return redirect('login')
+    return render(request, 'signup.html')

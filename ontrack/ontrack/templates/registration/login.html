@@ -1,58 +1,95 @@
-{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login V11</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/static/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/static/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<form method = "post" action = "/login/">
+	{% csrf_token %}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
+				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-55">
+						Login
+					</span>
 
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="username" 
+						 for = "username"
+						placeholder="Username">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-envelope"></span>
+						</span>
+					</div>
 
-{% block content %}
+					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password"
+						for = "password">
 
-<style>
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<span class="lnr lnr-lock"></span>
+						</span>
+					</div>
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-signin .checkbox {
-  font-weight: 400;
-}
-.form_signin .form-control {
-  position: relative;
-  box-sizing: border-box;
-  height: auto;
-  padding: 10px;
-  font-size: 16px;
-}
-.form_signin .form-control:focus {
-  z-index: 2;
-}
-.form_signin .field input[type="field"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form_signin .field input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
+					
 
+					<div class="container-login100-form-btn p-t-25">
+						<button class="login100-form-btn" type = submit>
+							Login
+						</button>
+					</div>
 
-</style>
+					<div class="text-center w-full p-t-115">
+						<span class="txt1">
+							Not a member?
+						</span>
 
-<h1>Login</h1>
-  <form class="form-signin" method = "post">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      {% csrf_token %}
-      <div class = "field">
-      	{{ form.as_p }}
-  	  </div>
+						<a class="txt1 bo1 hov1" href="/signup">
+							Sign up now
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	</form>
+	
 
-	  <input type="hidden" name="this_is_the_login_form" value="1" />
+	
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
 
-		<p style="margin-left:0px;">
-		    <a href="{% url 'password_reset' %}">Forgot password?</a>
-		</p>
-      <button class="btn btn-lg btn-primary btn-block" action = "{% url 'dashboard' %}" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
-  </form>
-
-{% endblock content %}
+</body>
+</html>

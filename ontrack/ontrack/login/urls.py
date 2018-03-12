@@ -1,9 +1,11 @@
 from django.urls import path, include
 
 from . import views
-
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.ajax_login, name='login'),
+    path('login/', views.login_user),
+    path('signup/', views.signup_user)
+
     
 ]

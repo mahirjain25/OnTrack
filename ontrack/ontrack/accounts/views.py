@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.urls import reverse_lazy
 from django.views import generic
 from django.views.generic import TemplateView
@@ -19,7 +19,9 @@ class SignUp(generic.CreateView):
 
     def func(request):
     	return HttpResponseRedirect("/")
-
+class Login(generic.CreateView):
+	form_class = AuthenticationForm
+	template_name = 'login.html'
 
 def dashboard(request):
 	

@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
+from . import forms
 
 def homePageView(request):
 	template_name = "base.html"
@@ -17,15 +18,19 @@ def homePageView(request):
 		if user is not None:
 			if user.is_active:
 				login(request, user)
-				return HttpResponseRedirect('accounts/dashboard')
+				return redirect('dashboard')
 
 	elif request.POST.get('submit') == 'sign_up':
-		form2 = UserCreationForm(request.POST)
+		form2 = forms.SignUpForm(request.POST)
 		if form2.is_valid():
 			form2.save()
-			return redirect('/')
+			username = form2.cleaned_data.get('username')
+			raw_password = form.cleaned_data.get('password1')
+			user = authenticate(username = username, password = raw_password)
+			login(request, user)
+			return redirect('dashboard')
 	form1 = AuthenticationForm()
-	form2 = UserCreationForm()
+	form2 = forms.SignUpForm()
 
 	return render(request, template_name, {'form1': form1, 'form2':form2})
 
