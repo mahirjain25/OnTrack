@@ -1,3 +1,4 @@
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html>
 <title>OnTrack</title>
@@ -7,6 +8,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/dist/remodal.css">
+<link rel="stylesheet" href="/static/dist/remodal-default-theme.css">
 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
@@ -64,7 +67,51 @@ text-decoration:none;
 }
 </style>
 
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
 <head>
+  <script src="/static/Documents/dist/remodal.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -216,6 +263,37 @@ $(document).ready(function() {
 });
 </script>
 
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('modul');
+
+// Get the button that opens the modal
+var btn = document.getElementById("butun");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
 <link href="/static/assets/css/animate.min.css" rel="stylesheet"/>
                                                                                                                                                                                                                                                     
 </head>
@@ -256,14 +334,54 @@ $(document).ready(function() {
 </div>
 
 <!-- Header -->
+<div class = "remodal-bg">
 <header id ="home" class="w3-container w3-black w3-center" style="padding:300px 16px;min-height : 100%; background-image: url('http://www.tokkoro.com/picsup/2992095-music-disk-macro-gramophone-vinyl___mixed-wallpapers.jpg'); " >
   <h1 class="w3-margin w3-jumbo">OnTrack</h1>
   <h3 class="w3-xlarge w3-padding-large">Your own College Personal Assistant!</h3>
+
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Register here!</button>
+
+<div id="myModal" class="remodal" role="dialog">
+  <div class="modal-dialog">
+
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    {% block javascript %}
+   <script>
+    $('*[maxlength = "150"]').change(function () {
+      console.log( $(this).val() );
+    });
+  </script>
+    {% endblock %}
+  </script>
+      <form class="form-signup" method = "post" action="/accounts/signup">
+      <h1 class="h3 mb-3 font-weight-normal" style = "color = #000;">Sign Up</h1>
+      {% csrf_token %}
+      <div class = "field">
+        {{ form2|crispy }}
+      </div>
+
+
+      <button class="btn btn-lg btn-primary btn-block" action = "{% url 'dashboard' %}" type="submit" value  = "sign_up">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+  </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
   {% if not user.is_authenticated %}
 <div class="popup"  id = "pop1" data-popup="popup-1">
 <div class="popup-inner">
 <h1>Login to Your Account</h1><br>
-{% load crispy_forms_tags %}
+
 <form class="form-signin" method = "post" action="{% url 'login' %}">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       {% csrf_token %}

@@ -29,8 +29,12 @@ def homePageView(request):
 
 	return render(request, template_name, {'form1': form1, 'form2':form2})
 
-
-
+def validate_username(request):
+    username = request.GET.get('username', None)
+    data = {
+        'is_taken': User.objects.filter(username__iexact=username).exists()
+    }
+    return JsonResponse(data)
 
 class AboutPageView(TemplateView):
 	template_name = "about.html"
