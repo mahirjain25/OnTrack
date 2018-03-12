@@ -11,11 +11,11 @@ import requests
 
 import pyowm
 
+
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('/accounts/login')
-    template_name = 'signup.html'
-
+    template_name = 'base.html'
 
 def dashboard(request):
 	
