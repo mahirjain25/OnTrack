@@ -306,6 +306,9 @@ window.onclick = function(event) {
   <div class="w3-bar w3-black w3-card w3-left-align w3-large">
     <a href="#home" class="w3-bar-item w3-button w3-padding-large w3-black w3-hover-white">Home</a>
     <a href="#about" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-amber">About</a>
+    <a href="#reminders" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-amber">Reminders</a>
+    <a href="#fitness" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-amber">Fitness</a>
+    <a href="#clothes" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-amber">Clothing Recommendations</a>
     <a href="#contact" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-amber">Contact Us</a>
     {% if user.is_authenticated %}
     <a href="{% url 'dashboard' %}" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-amber">Dashboard</a>
@@ -420,19 +423,75 @@ window.onclick = function(event) {
   </div>
 </div>
 
+
+
 <!-- Second Grid -->
-<div id="contact" class="w3-row-padding w3-pale-red w3-padding-64 w3-container" style = "min-height : 100%">
+<div id="reminders" class="w3-row-padding w3-pale-yellow w3-padding-64 w3-container" style = "min-height : 100%">
   <div class="w3-content">
     <div class="w3-third w3-center">
-      <i class="fa fa-at w3-padding-32 w3-text-red w3-margin-right"></i>
+      <i class="fa fa-check-square-o w3-padding-32 w3-text-black w3-margin-right" style = "font-size:150px;"></i>
     </div>
 
     <div class="w3-twothird" >
+      <h1>Reminders</h1>
+      <h3 class="w3-padding-32">University has its stressful periods and we've got you covered. Keep in pace with what's happening by setting custom reminders and getting notified when they're due.</h3>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Fourth Grid -->
+<div id="clothes" class="w3-row-padding w3-pale-pink w3-padding-64 w3-container" style = "min-height : 100%">
+  <div class="w3-content">
+
+    
+
+
+    <div class="w3-twothird" >
+      <h1>Clothing recommendations</h1>
+      <h3 class="w3-padding-32">Ever find yourself wearing the same clothes to different kind of events because you can't decide to wear? How frustrating is it when the weather takes a turn for the worse and you're unprepared for it? By taking input from the local weather conditions and your schedule, we're here to help you pick that perfect outfit for the day!</h3>
+    </div>
+
+
+    <div class="w3-third w3-center">
+      <img src = "data:image/jpeg;base64,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"></img>
+    </div>
+
+    
+  </div>
+</div>
+
+<!-- Fifth Grid -->
+<div id="fitness" class="w3-row-padding w3-pale-blue w3-padding-64 w3-container" style = "min-height : 100%">
+  <div class="w3-content">
+    <div class="w3-third w3-center">
+      <i class="fa fa-heartbeat w3-padding-32 w3-text-red w3-margin-right" style = "font-size:150px;"></i>
+    </div>
+
+    <div class="w3-twothird" >
+      <h1>Fitness</h1>
+      <h3 class="w3-padding-32">We can understand how tiring a long day of classes can be but that's no excuse to exercise. We're here to keep you OnTrack to reach your fitness goals!</h3>
+    </div>
+  </div>
+</div>
+
+<!-- Sixth Grid -->
+<div id="contact" class="w3-row-padding w3-pale-red w3-padding-64 w3-container" style = "min-height : 100%">
+  <div class="w3-content">
+    
+
+    <div class="w3-twothird" >
       <h1>Contact Us</h1>
-      <h3 class="w3-padding-32">At OnTrack, we believe there is always scope for improvement. We'd definitely like to hear from y'all so do feel free to contact us at:</h3>
+      <h3 class="w3-padding-32">We understand that there's always room for imporvement and we're open to listening to your suggestions. Send in your suggestions at:</h3>
       <h5>E-mail: <a href="#">mahirjain25@gmail.com</a></h5>
       <h5>E-mail: <a href="#">suraj1998@gmail.com</a></h5>
 
+    </div>
+
+    <div class="w3-third w3-center">
+      <i class="fa fa-at w3-padding-32 w3-text-red w3-margin-right"></i>
     </div>
   </div>
 </div>
