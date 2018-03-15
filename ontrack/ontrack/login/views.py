@@ -18,10 +18,11 @@ def login_user(request):
             if user.is_active:
                 login(request, user)
                 return redirect('dashboard')
-    return render(request, 'registration/login.html')
+    return render(request, 'login.html')
 
 
 class SignUp(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
+
