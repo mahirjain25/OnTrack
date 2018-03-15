@@ -3,7 +3,8 @@ from django.shortcuts import render_to_response
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponse
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm , UserCreationForm
+from django.views import generic
 from . import forms
 import json, pdb
 
@@ -19,14 +20,9 @@ def login_user(request):
                 return redirect('dashboard')
     return render(request, 'login.html')
 
-def signup_user(request):
-    if request.POST:
-        form = forms.MyRegistrationForm()
-        form.username = request.POST.get('username')
-        form.password1 = request.POST.get('password1')
-        form.password2 = request.POST.get('password2')
-        form.email = request.POST.get('email')
-        if form.is_valid():
-            form.save()
-            return redirect('login.html')
-    return render(request, 'signup.html')
+
+class SignUp(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login')
+    template_name = 'signup.html'
+
