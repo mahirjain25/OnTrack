@@ -17,7 +17,7 @@ def login_user(request):
             if user.is_active:
                 login(request, user)
                 return redirect('dashboard')
-    return render(request, 'registration/login.html')
+    return render(request, 'login.html')
 
 def signup_user(request):
     if request.POST:
@@ -28,5 +28,5 @@ def signup_user(request):
         form.email = request.POST.get('email')
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect('login.html')
     return render(request, 'signup.html')
