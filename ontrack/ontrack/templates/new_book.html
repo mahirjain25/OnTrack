@@ -1,8 +1,32 @@
+
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html lang="en">
+
+
+
 <head>
-	<title>Sign Up</title>
+	<title> 
+    Add/Edit Book Issued
+	</title>	
+
+  <style>
+    
+
+
+.text-white-50 { color: rgba(255, 255, 255, .5); }
+
+.bg-purple { background-color: var(--purple); }
+
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.lh-100 { line-height: 1; }
+.lh-125 { line-height: 1.25; }
+.lh-150 { line-height: 1.5; }
+
+
+  </style>
+  
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -23,34 +47,35 @@
 	<link rel="stylesheet" type="text/css" href="/static/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 <!--===============================================================================================-->
+
+
 </head>
-<body>
-	<a href="{%  url 'home' %}">Home</a>
-	<form method = "post">
-	{% csrf_token %}
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-				<form class="login100-form validate-form">
-					{{form|crispy}}
-					<button type="submit">Sign up</button>
-				</form>
-			</div>
-		</div>
-	</div>
-	</form>
-	
 
-	
-<!--===============================================================================================-->	
-	<script src="/static/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/static/vendor/bootstrap/js/popper.js"></script>
-	<script src="/static/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/static/vendor/select2/select2.min.js"></script>
-<!--===============================================================================================-->
-	<script src="/static/js/main.js"></script>
 
-</body>
-</html>
+<br>
+<main role="main" class="container">
+      <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow">
+        <div class="lh-100">
+          <h4 class="mb-0 text-white lh-100">New Issued Book</h4>
+          <small> <a href="{% url 'new_reminder' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a> </small>
+        </div>
+      </div>
+
+      <div class="my-3 p-3 bg-white rounded box-shadow">
+          <div class="media text-muted pt-3">
+            <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+           
+            <form method = "POST" class = "post-form">
+            	{% csrf_token %}
+            	{{ form|crispy}}
+               <br>
+              }
+          
+            <p>(Format for Due Date: MM/DD/YYYY HH:MM:SS)</p>
+            	<button type="submit" class="save btn btn-success">Save</button>
+
+            	
+            </form>
+          </div>
+      </div>
+</main>

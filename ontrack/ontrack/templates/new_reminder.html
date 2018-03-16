@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
 
 
-
-{% block content%}
 
 <head>
-	<title> New Reminder
+	<title> 
+    Add/Edit Reminder
 	</title>	
 
   <style>
@@ -41,14 +41,18 @@
       <div class="my-3 p-3 bg-white rounded box-shadow">
           <div class="media text-muted pt-3">
             <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
+           
             <form method = "POST" class = "post-form">
             	{% csrf_token %}
-            	{{ form.as_p }}
-            	<button type="submit" class="save btn btn-default">Save</button>
+            	{{ form|crispy}}
+               <br>
+              }
+          
+            <p>(Format for Due Date: MM/DD/YYYY HH:MM:SS)</p>
+            	<button type="submit" class="save btn btn-success">Save</button>
 
             	
             </form>
           </div>
       </div>
 </main>
-{% endblock %}

@@ -31,13 +31,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-EMAIL_USE_TLS = False
-DEFAULT_FROM_EMAIL = 'test@gmail.com'
-SERVER_EMAIL = 'test@gmail.com'
-EMAIL_HOST = 'aspmx.l.google.com'
-EMAIL_PORT = 25
-EMAIL_HOST_USER = 'test@gmail.com'
-EMAIL_HOST_PASSWORD = 'password'
+
+#DEFAULT_FROM_EMAIL = 'smtp.sparkpostmail.com'
+#SERVER_EMAIL = 'smtp.sparkpostmail.com'
+EMAIL_HOST = 'in-v3.mailjet.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'e1d5c7609fbc137d3131a72b50a8128e'
+EMAIL_HOST_PASSWORD = 'ea6b01448caa542758743625d69f696d'
+EMAIL_USE_SSL = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 GEOIP_PATH  = "/home/suraj/backup/ontrack/ontrack/location"

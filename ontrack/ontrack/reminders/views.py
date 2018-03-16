@@ -17,7 +17,7 @@ def new_reminder(request):
 			post = form.save(commit = False)
 			post.published_date = timezone.now()
 			post.save()
-			return redirect('reminders')
+			return redirect('dashboard')
 	else:
 		form = ReminderForm()
 	return render(request, 'new_form.html', {'form': form})

@@ -4,9 +4,9 @@ Requirements:
 
 1. Python >= 3.5
 
-2. Pipenv: 
+2. Pipenv (For virtual environent set-ups): 
 Install via ```pip3 install pipenv```
-Then cd to OnTrack/ontrack and run ```pipenv shell``` and install the rest of the dependancies.
+Then cd to OnTrack/ontrack and run ```pipenv shell``` and install the rest of the dependancies as listed in this document.
 
 3. Django 2.0: 
 To run the server, change directory to ```OnTrack/ontrack/ontrack``` and run ```python3 manage.py runserver```
@@ -45,4 +45,6 @@ DATABASES = {
     }
 } 
 ```
+
+
 

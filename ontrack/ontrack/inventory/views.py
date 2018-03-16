@@ -23,7 +23,7 @@ def add_clothes(request):
 		
 		
 		
-	else:
+	
 		form = AddClothesForm()	#Create a blank form
 		
 		

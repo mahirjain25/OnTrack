@@ -9,7 +9,5 @@ class AddClothesForm(forms.Form):
 	 quantity = forms.IntegerField(label = 'Quantity of such clothes',required = True)
 	 tag = forms.CharField(label = 'Short, optional description of item', required = False,max_length=20)
 	 
-	
 
-	
 
