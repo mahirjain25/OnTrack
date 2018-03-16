@@ -31,10 +31,32 @@ class Reminder(models.Model):
 			return self.title
 
 
+class Feedback(models.Model):
+	author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+	
+	text = models.TextField()
+	created_date = models.DateTimeField(
+	default=timezone.now)
+	
+
+	def publish(self):
+		self.published_date = timezone.now()
+		self.save()
+
+	def __str__(self):
+		return self.title
+
+	class Meta:
+		ordering = ['created_date']
+		def __unicode__(self):
+			return self.title
+
+
 class Book(models.Model):
 	isbn = models.IntegerField(primary_key=True,db_column='ISBN')
 	name = models.CharField(db_column='Book Name', max_length=30)
 	author = models.CharField(db_column = 'Author Name',max_length=20)
+	#auth_user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 	date_issued = models.DateField(db_column='Date of Issue')
 	date_of_return = models.DateField(db_column='Date of Return')
 	freq = models.IntegerField()

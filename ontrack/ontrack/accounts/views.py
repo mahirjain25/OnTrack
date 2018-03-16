@@ -14,9 +14,10 @@ import pyowm
 from django.shortcuts import redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
+from . import forms
 
 class SignUp(generic.CreateView):
-    form_class = UserCreationForm
+    form_class = AuthenticationForm#forms.CustomSignUp
     success_url = reverse_lazy('login')
     template_name = 'base.html'
 
@@ -44,12 +45,14 @@ def dashboard(request):
 	temperature = w.get_temperature(unit='celsius')['temp']
 	context = locals()
 	
-	d = {"sun": "https://i.imgur.com/J0heQg7.png", "rain" :"https://i.imgur.com/zFJAEWp.png", "snow" : "https://i.imgur.com/vOSIvVb.png", "cloud" :"https://cdn2.iconfinder.com/data/icons/wthr/32/cloudy-512.png", "verysunny" : "https://i.imgur.com/bIcsdMF.png"}
+	d = {"sun": "https://i.imgur.com/J0heQg7.png", "day": "https://i.imgur.com/J0heQg7.png","drizzle" :"https://i.imgur.com/zFJAEWp.png","rain" :"https://i.imgur.com/zFJAEWp.png", "snow" : "https://i.imgur.com/vOSIvVb.png", "cloud" :"https://cdn2.iconfinder.com/data/icons/wthr/32/cloudy-512.png", "hot" : "https://i.imgur.com/bIcsdMF.png"}
 	imag  = None
 	for i in d:
 		if i in desc:
 			imag = d[i]
 			break
+	if temperature >= 30:
+		imag = d["hot"]
 	return render(request, template_name, {"reminders": reminders, "temp": temperature, "desc": desc, "imag": imag, "books":books})#, {"temp" : temperature, "desc":desc})
 
 	'''def get(self, request, *args, **kwargs):
@@ -83,6 +86,7 @@ def new_reminder(request):
 		if form.is_valid():
 			post = form.save(commit = False)
 			post.published_date = timezone.now()
+			post.author = request.user
 			post.save()
 			return redirect('dashboard')
 	else:
@@ -130,12 +134,24 @@ def new_book(request):
 		if form.is_valid():
 			post = form.save(commit = False)
 			post.published_date = timezone.now()
+			#post.author = request.user
 			post.save()
 			return redirect('dashboard')
 	else:
 		form = BookForm()
 	return render(request,template,{"form":form})
 	
+@login_required(redirect_field_name='login')
+def new_feedback(request):	
 	
-	
-	
+	if request.method == "POST":
+		form = forms.FeedbackForm(request.POST)
+		if form.is_valid():
+			post = form.save(commit = False)
+			post.published_date = timezone.now()
+			post.author = request.user
+			post.save()
+			return redirect('dashboard')
+	else:
+		form = forms.FeedbackForm()
+	return render(request, 'feedback.html', {'form': form})

@@ -1,0 +1,12 @@
+							
+{% load crispy_forms_tags %}
+							<div class="header">
+                                <h4 class="title">Add a New Clothing Item</h4>
+                                
+                                <form method = "post">
+                                    {% csrf_token %}
+                                    {{form|crispy}}
+                                    <button class = "btn-btn success" type = "submit">Add new item</button>
+                                </form>
+
+                            </div>

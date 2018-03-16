@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Clothes(models.Model):
@@ -65,6 +65,10 @@ class Clothes(models.Model):
     category = models.CharField(choices=CATEGORY_CHOICES,max_length=2,blank=False,db_column = 'Category')
     colour = models.CharField(choices=COLOUR_CHOICES,max_length=2,db_column = 'Colour')
     tag = models.TextField(max_length=20)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+
+    def __str__(self):
+        return self.tag
     
     
 class Books(models.Model):

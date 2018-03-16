@@ -11,3 +11,7 @@ class AddClothesForm(forms.Form):
 	 
 
 
+class AddClothesForm(forms.ModelForm):
+	class Meta:
+		model = Clothes
+		fields = ('category','types','colour','quantity','tag',)

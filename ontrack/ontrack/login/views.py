@@ -26,7 +26,7 @@ def login_user(request):
 
 
 class SignUp(generic.CreateView):
-    form_class = UserCreationForm
+    form_class = forms.MyRegistrationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
 

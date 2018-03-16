@@ -25,15 +25,31 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	<a href="{%  url 'home' %}">Home</a>
+	
 	<form method = "post">
 	{% csrf_token %}
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
 				<form class="login100-form validate-form">
+					<span class="login100-form-title p-b-55">
+						Sign Up
+					</span>
+
 					{{form|crispy}}
-					<button type="submit">Sign up</button>
+					<div class="container-login100-form-btn p-t-25">
+						<button class="login100-form-btn" type = submit>
+							Sign Up
+						</button>
+					</div>
+					<div class="container-login100-form-btn p-t-25">
+						<a href = "/">
+							Back to Homepage</a>
+						
+					</div>
+					</div>
+					
+					
 				</form>
 			</div>
 		</div>
