@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V11</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -25,20 +25,14 @@
 <!--===============================================================================================-->
 </head>
 <body>
-	<a href="">Home</a>
 	<form method = "post" action = "/login/">
 	{% csrf_token %}
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-50 p-r-50 p-t-77 p-b-30">
-
 				<form class="login100-form validate-form">
 					<span class="login100-form-title p-b-55">
 						Login
-					</span>
-
-					<span class="login100-form-title p-b-55">
-						{{error}}
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
@@ -66,15 +60,18 @@
 							Forgot Password?
 						</a>
 						
-					</div>	
+					</div>
 
 					<div class="container-login100-form-btn p-t-25">
 						<button class="login100-form-btn" type = submit>
 							Login
 						</button>
 					</div>
-
-
+					<div class="container-login100-form-btn p-t-25">
+						<a href = "/">
+							Back to Homepage</a>
+						
+					</div>
 					<div class="text-center w-full p-t-115">
 						<span class="txt1">
 							Not a member?
@@ -83,7 +80,6 @@
 						<a class="txt1 bo1 hov1" href="/signup">
 							Sign up now
 						</a>
-
 					</div>
 				</form>
 			</div>

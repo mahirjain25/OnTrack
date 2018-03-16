@@ -9,10 +9,10 @@ from django.utils import timezone
 #from django.contrib.gis.geoip2 import GeoIP2
 from django.shortcuts import render_to_response
 import requests
-from .forms import ReminderForm
+from .forms import *
 import pyowm
 from django.shortcuts import redirect
-from .models import Reminder, Book
+from .models import *
 from django.contrib.auth.decorators import login_required
 
 class SignUp(generic.CreateView):
@@ -119,7 +119,7 @@ def delete_reminder(request, pk):
 @login_required(redirect_field_name='login')
 def book(request):
 	books = Book.objects.filter().order_by('date_of_return')
-	return render(request, 'reminder.html',{'reminders': reminders, url_name : "new_reminder"})
+	return render(request, 'reminder.html',{'books': books, "new_reminder": url_name})
 	
 	
 @login_required(redirect_field_name='login')
@@ -134,7 +134,7 @@ def new_book(request):
 			return redirect('dashboard')
 	else:
 		form = BookForm()
-	return render(request,template, {'form': form})
+	return render(request,template,{"form":form})
 	
 	
 	
