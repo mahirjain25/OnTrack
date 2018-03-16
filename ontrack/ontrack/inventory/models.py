@@ -4,39 +4,39 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Clothes(models.Model):
-    TEES = 'TEE'
-    PANTS = 'PNT'
-    JEANS = 'JNS'
-    SHIRTS = 'SHR'
-    SHORTS = 'SHT'
-    UNDERGARMENTS = 'UNG'
-    SOCKS = 'SCK'
-    ETHNICTOP = 'ETT'
-    ETHNICBOTTOM = 'ETB'
+    TEES = 'TEEs'
+    PANTS = 'PANTS'
+    JEANS = 'JEANS'
+    SHIRTS = 'SHIRT'
+    SHORTS = 'SHORTS'
+    UNDERGARMENTS = 'UNDERGARMENTS'
+    SOCKS = 'SOCKS'
+    ETHNICTOP = 'ETHNIC TOP'
+    ETHNICBOTTOM = 'ETHNIC BOTTOM'
     TOP = 'TOP'
-    SKIRT = 'SKT'
-    LEGGINGS = 'LEG'
-    DRESS = 'DRS'
+    SKIRT = 'SKIRT'
+    LEGGINGS = 'LEGGINGS'
+    DRESS = 'DRESS'
     
-    FORMAL = 'FL'
-    CASUAL = 'CL'
-    SEMIFORMAL = 'SF'
-    NIGHTWEAR = 'NW'
+    FORMAL = 'FORMAL'
+    CASUAL = 'CASUAL'
+    SEMIFORMAL = 'SEMI-FORMAL'
+    NIGHTWEAR = 'NIGHT-WEAR'
     
     TYPE_CHOICES = (
-    	(TEES,'Tees'),
+    	(TEES,'Tee(s)'),
     	(PANTS,'Pants'),
     	(JEANS,'Jeans'),
-    	(SHIRTS,'Shirts'),
-    	(SHORTS,'Shorts'),
-    	(UNDERGARMENTS,'Undergarments'),
+    	(SHIRTS,'Shirt(s)'),
+    	(SHORTS,'Shorts)'),
+    	(UNDERGARMENTS,'Undergarment(s)'),
     	(SOCKS,'Socks'),
-    	(ETHNICTOP,'Ethnic Top'),
-    	(ETHNICBOTTOM,'Ethnic Bottom'),
-    	(TOP,'Women\'s Top'),
-    	(SKIRT,'Skirt'),
+    	(ETHNICTOP,'Ethnic Top(s)'),
+    	(ETHNICBOTTOM,'Ethnic Bottom(s)'),
+    	(TOP,'Women\'s Top(s)'),
+    	(SKIRT,'Skirt(s)'),
     	(LEGGINGS,'Leggings/Skins'),
-    	(DRESS,'Women\'s Dress'),
+    	(DRESS,'Women\'s Dress(es)'),
     )
     
     CATEGORY_CHOICES = (
@@ -47,23 +47,23 @@ class Clothes(models.Model):
     )
     
     COLOUR_CHOICES = (
-	('WT','White'),    
-    ('RD','Red'),
-    ('BL','Black'),
-    ('BE','Blue'),
-    ('BR','Brown'),
-    ('YL','Yellow'),
-    ('OR','Orange'),
-    ('PL','Purple'),
-    ('GR','Green'),
-    ('GY','Grey'),
-    ('PK','Pink'),
-    ('OT','Other'),
+	('White','White'),    
+    ('Red','Red'),
+    ('Black','Black'),
+    ('Blue','Blue'),
+    ('Brown','Brown'),
+    ('Yellow','Yellow'),
+    ('Orange','Orange'),
+    ('Purple','Purple'),
+    ('Green','Green'),
+    ('Grey','Grey'),
+    ('Pink','Pink'),
+    ('Other','Other'),
     )
     quantity = models.IntegerField(db_column = 'Qty')
-    types = models.CharField(choices=TYPE_CHOICES,max_length=3,blank=False,db_column = 'Type')
-    category = models.CharField(choices=CATEGORY_CHOICES,max_length=2,blank=False,db_column = 'Category')
-    colour = models.CharField(choices=COLOUR_CHOICES,max_length=2,db_column = 'Colour')
+    types = models.CharField(choices=TYPE_CHOICES,max_length =10,blank=False,db_column = 'Type')
+    category = models.CharField(choices=CATEGORY_CHOICES,max_length =10,blank=False,db_column = 'Category')
+    colour = models.CharField(choices=COLOUR_CHOICES,max_length =10,db_column = 'Colour')
     tag = models.TextField(max_length=20)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 

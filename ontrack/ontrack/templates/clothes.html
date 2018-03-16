@@ -28,7 +28,7 @@
 </head>
 <body>
 
-<div class="wrapper animated fadeInLeft">
+<div class="wrapper animated fadeInTop">
     <div class="sidebar" data-color="azure" data-image="#">
 
     <!--
@@ -45,32 +45,32 @@
                 </a>
             </div>
 
-            <ul class="nav" style="padding-top:50px;">
+            <ul class="nav" style="padding-top:40px;">
                 <li style="padding-top:50px;">
                     <a href="/accounts/dashboard">
                         <i class="pe-7s-home"></i>
                         <p>Dashboard Home</p>
                     </a>
                 </li>
-                <li style="padding-top:50px;">
+                <li style="padding-top:40px;">
                     <a href="user.html">
                         <i class="pe-7s-id"></i>
                         <p>User Profile</p>
                     </a>
                 </li>
-                <li class = "active" style="padding-top:50px;">
+                <li class = "active" style="padding-top:40px;">
                     <a href="/inventory/inventory">
                         <i class="pe-7s-id"></i>
                         <p>My Clothes</p>
                     </a>
                 </li>
-                <li style="padding-top:50px;">
+                <li style="padding-top:40px;">
                     <a href="{% url 'feedback' %}">
                         <i class="pe-7s-comment"></i>
                         <p>Give Feedback</p>
                     </a>
                 </li>
-                <li style="padding-top:50px;">
+                <li style="padding-top:40px;">
                     <a href="notifications.html">
                         <i class="pe-7s-bell"></i>
                         <p>Notifications</p>
@@ -161,12 +161,12 @@
         </nav>
 
 
-        <div class="col-md-6">
+        <div class="col-md-12">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Your Clothing Inventory</h4>
-                                <p class="category">What are you going to wear today?</p>
-                                <a href = "{% url 'add_clothes' %}"><button >Add a clothing item</button></a>
+                                <h2 class="title text-center">Your Clothing Inventory</h2>
+                                <p class="category text-center">Let's add your wardrobe!</p>
+                                <a href = "{% url 'add_clothes' %}"><button style="padding-top: 5px;">Add a clothing item</button></a>
 
                             </div>
                             <div class="content">
@@ -182,15 +182,14 @@
                                                             <label for="checkbox1"></label>
                                                         </div>
                                                     </td>
-                                                    <td>{{cloth.category}} {{cloth.type}}</td>
+                                                    <td>{{cloth.quantity}} {{cloth.colour}} {{cloth.category}} {{cloth.types}}</td>
                                                     <td class="td-actions text-right">
-                                                        <td>{{reminder.tag}}</td>
-                                                        <a href="#">
+                                                        <a href="{% url 'edit_cloth' pk=cloth.pk %}">
                                                         <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
                                                             <i class="fa fa-edit"></i>
                                                         </button>
                                                         </a>
-                                                        <a href="#">
+                                                         <a href="{% url 'delete_cloth' pk=cloth.pk %}">
                                                         <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                             <i class="fa fa-times"></i>
                                                         </button>
@@ -213,17 +212,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-        <footer class="footer" data-color="blue">
-            <div class="container-fluid ">
-                <p class = "text-center" style="font-family: 'Lato';background-color:amber;" >
-                 Made with love by team OnTrack!
-                </p>
-            </div>
-        </footer>
-
     </div>
 </div>
   <footer class="footer" data-color="blue">

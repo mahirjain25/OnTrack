@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from inventory.forms import *
@@ -34,28 +34,28 @@ def add_clothes(request):
 		
 	return render(request,'new_cloth.html',{'form':form})
 
-def edit_reminder(request, pk):
+def edit_clothes(request, pk):
 	
-	template = 'new_reminder.html'
-	reminder = get_object_or_404(Reminder, pk = pk)
+	template = 'new_cloth.html'
+	cloth = get_object_or_404(Clothes, pk = pk)
 	
 	if request.method == 'POST':
-		form = ReminderForm(request.POST)
+		form = AddClothesForm(request.POST)
 		
 		try:
 			if form.is_valid():
 				form.save()
-				return redirect('dashboard')
+				return redirect('inventory')
 		except Exception as e:
-			return HttpResponse("Reminder was not saved due to {}", e )
+			return HttpResponse("Cloth was not saved due to {}", e )
 	else:
-		form = ReminderForm(instance = reminder)
-	return render(request, template ,{"form":form ,"reminder": reminder})
+		form = AddClothesForm(instance = cloth)
+	return render(request, template ,{"form":form ,"cloth": cloth})
 
 
 @login_required(redirect_field_name='login')
-def delete_reminder(request, pk):
-	query = get_object_or_404(Reminder, pk =  pk)
+def delete_clothes(request, pk):
+	query = get_object_or_404(Clothes, pk =  pk)
 	query.delete()
 	
-	return redirect('/accounts/dashboard')
+	return redirect('inventory')

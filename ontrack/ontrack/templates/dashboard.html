@@ -45,33 +45,33 @@
                 </a>
             </div>
 
-            <ul class="nav" style="padding-top:50px;">
+            <ul class="nav" style="padding-top:40px;">
                 <li class="active" style="padding-top:50px;">
                     <a href="/accounts/dashboard">
                         <i class="pe-7s-home"></i>
                         <p>Dashboard Home</p>
                     </a>
                 </li>
-                <li style="padding-top:50px;">
+                <li style="padding-top:40px;">
                     <a href="user.html">
                         <i class="pe-7s-id"></i>
                         <p>User Profile</p>
                     </a>
                 </li>
-                <li style="padding-top:50px;">
+                <li style="padding-top:40px;">
                     <a href="/inventory/inventory">
                         <i class="pe-7s-id"></i>
                         <p>My Clothes</p>
                     </a>
                 </li>
-                <li style="padding-top:50px;">
+                <li style="padding-top:40px;">
                     <a href="{% url 'feedback' %}">
                         <i class="pe-7s-comment"></i>
                         <p>Give Feedback</p>
                     </a>
                 </li>
-                <li style="padding-top:50px;">
-                    <a href="notifications.html">
+                <li style="padding-top:40px;">
+                    <a href="#">
                         <i class="pe-7s-bell"></i>
                         <p>Notifications</p>
                     </a>
@@ -131,7 +131,7 @@
                                <p>Account</p>
                             </a>
                         </li>
-                        <li class="dropdown">
+                        <!--<li class="dropdown">
                               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <p>
 										Dropdown
@@ -148,7 +148,7 @@
                                 <li class="divider"></li>
                                 <li><a href="#">Separated link</a></li>
                               </ul>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="{% url 'logout' %}">
                                 <p>Log out</p>
@@ -185,22 +185,13 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Users Behavior</h4>
-                                <p class="category">24 Hours performance</p>
+                                <h4 class="title">Quote of The Day</h4>
+                                <p class="category">A few words to inspire you today!</p>
                             </div>
                             <div class="content">
-                                <div id="chartHours" class="ct-chart"></div>
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Click
-                                        <i class="fa fa-circle text-warning"></i> Click Second Time
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
+                                <h1><i>By working faithfully eight hours a day you may eventually get to be boss and work twelve hours a day.</i></h1>
+                                <h3><b>- Robert Frost</b></h3>
+                                <h4>(Legendary Poet)</h4>
                             </div>
                         </div>
                     </div>
@@ -212,21 +203,43 @@
                     <div class="col-md-6">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">2014 Sales</h4>
-                                <p class="category">All products including Taxes</p>
+                                <h4 class="title">Books Issued</h4>
+                                <p class="category">Renew them on time!</p>
+                                <a href = "/accounts/new_book"><button >New Book</button></a>
+
                             </div>
                             <div class="content">
-                                <div id="chartActivity" class="ct-chart"></div>
+                                <div class="table-full-width">
+                                    <table class="table">
+                                        <tbody>
+                                            {% for book in books %}
 
-                                <div class="footer">
-                                    <div class="legend">
-                                        <i class="fa fa-circle text-info"></i> Tesla Model S
-                                        <i class="fa fa-circle text-danger"></i> BMW 5 Series
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-check"></i> Data information certified
-                                    </div>
+                                                <tr>
+                                                    <td>
+                                                        <div class="checkbox">
+                                                            <input id="checkbox1" type="checkbox">
+                                                            <label for="checkbox1"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>Book: {{book.name}}</td>
+                                                    <td class="td-actions text-right">
+                                                        <td>Return By: {{book.date_of_return}}</td>
+                                                        <a href="#">
+                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
+                                                            <i class="fa fa-edit"></i>
+                                                        </button>
+                                                        </a>
+                                                        <a href="#">
+                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -275,68 +288,21 @@
                                     </table>
                                 </div>
 
-                                <div class="footer">
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
 
-
-                    <div class="col-md-6">
+					<div class="col-md-12">
                         <div class="card ">
                             <div class="header">
-                                <h4 class="title">Books Issued</h4>
-                                <p class="category">Renew them on time!</p>
-                                <a href = "/accounts/new_book"><button >New Book</button></a>
-
+                                <h3 class="title">Need a tip?</h3>
+                                <p class="category">We're always there to keep you OnTrack :)</p>
                             </div>
-                            <div class="content">
-                                <div class="table-full-width">
-                                    <table class="table">
-                                        <tbody>
-                                            {% for book in books %}
-
-                                                <tr>
-                                                    <td>
-                                                        <div class="checkbox">
-                                                            <input id="checkbox1" type="checkbox">
-                                                            <label for="checkbox1"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>{{book.isbn}} {{book.name}}</td>
-                                                    <td class="td-actions text-right">
-                                                        <td>{{book.date_of_return}}</td>
-                                                        <a href="#">
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
-                                                        </a>
-                                                        <a href="#">
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            {% endfor %}
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <div class="footer">
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
-                            </div>
+                           	<h3 class="text-center" style = "color: deep-blue;"><a href="#">Click Here to let our suggestion engine do it's thing!</a></h3>
                         </div>
                     </div>
+
+                    
                 </div>
             </div>
         </div>
