@@ -15,6 +15,7 @@ from django.shortcuts import redirect
 from .models import *
 from django.contrib.auth.decorators import login_required
 from . import forms
+import wikiquote
 
 class SignUp(generic.CreateView):
     form_class = AuthenticationForm#forms.CustomSignUp
@@ -45,7 +46,7 @@ def dashboard(request):
 	temperature = w.get_temperature(unit='celsius')['temp']
 	context = locals()
 	
-	d = {"sun": "https://i.imgur.com/J0heQg7.png", "day": "https://i.imgur.com/J0heQg7.png","drizzle" :"https://i.imgur.com/zFJAEWp.png","rain" :"https://i.imgur.com/zFJAEWp.png", "snow" : "https://i.imgur.com/vOSIvVb.png", "cloud" :"https://cdn2.iconfinder.com/data/icons/wthr/32/cloudy-512.png", "hot" : "https://i.imgur.com/bIcsdMF.png"}
+	d = {"lightning":"https://i.imgur.com/99BrvGA.png", "thunder":"https://i.imgur.com/99BrvGA.png", "thunderstorm":"https://i.imgur.com/99BrvGA.png" "sun": "https://i.imgur.com/J0heQg7.png", "day": "https://i.imgur.com/J0heQg7.png","drizzle" :"https://i.imgur.com/zFJAEWp.png","rain" :"https://i.imgur.com/zFJAEWp.png", "snow" : "https://i.imgur.com/vOSIvVb.png", "cloud" :"https://cdn2.iconfinder.com/data/icons/wthr/32/cloudy-512.png", "hot" : "https://i.imgur.com/bIcsdMF.png"}
 	imag  = None
 	for i in d:
 		if i in desc:
@@ -53,7 +54,8 @@ def dashboard(request):
 			break
 	if temperature >= 30:
 		imag = d["hot"]
-	return render(request, template_name, {"reminders": reminders, "temp": temperature, "desc": desc, "imag": imag, "books":books})#, {"temp" : temperature, "desc":desc})
+	quote, author = wikiquote.quote_of_the_day()
+	return render(request, template_name, {"reminders": reminders, "temp": temperature, "desc": desc, "imag": imag, "books":books, "quote": quote, "author": author})#, {"temp" : temperature, "desc":desc})
 
 	'''def get(self, request, *args, **kwargs):
 		g = GeoIP2()
