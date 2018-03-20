@@ -46,7 +46,7 @@ def dashboard(request):
 	temperature = w.get_temperature(unit='celsius')['temp']
 	context = locals()
 	
-	d = {"lightning":"https://i.imgur.com/99BrvGA.png", "thunder":"https://i.imgur.com/99BrvGA.png", "thunderstorm":"https://i.imgur.com/99BrvGA.png","sun": "https://i.imgur.com/J0heQg7.png", "day": "https://i.imgur.com/J0heQg7.png","drizzle" :"https://i.imgur.com/zFJAEWp.png","rain" :"https://i.imgur.com/zFJAEWp.png", "snow" : "https://i.imgur.com/vOSIvVb.png", "cloud" :"https://cdn2.iconfinder.com/data/icons/wthr/32/cloudy-512.png", "hot" : "https://i.imgur.com/bIcsdMF.png",}
+	d = {"lightning":"https://i.imgur.com/99BrvGA.png", "thunder":"https://i.imgur.com/99BrvGA.png", "thunderstorm":"https://i.imgur.com/99BrvGA.png","sun": "https://i.imgur.com/J0heQg7.png", "clear":  "https://i.imgur.com/J0heQg7.png","day": "https://i.imgur.com/J0heQg7.png","drizzle" :"https://i.imgur.com/zFJAEWp.png","rain" :"https://i.imgur.com/zFJAEWp.png", "snow" : "https://i.imgur.com/vOSIvVb.png", "cloud" :"https://cdn2.iconfinder.com/data/icons/wthr/32/cloudy-512.png", "hot" : "https://i.imgur.com/bIcsdMF.png",}
 	imag  = None
 	for i in d:
 		if i in desc:
@@ -125,3 +125,6 @@ def new_book(request):
 		form = BookForm()
 	return render(request,template,{"form":form})
 	
+@login_required(redirect_field_name='login')
+def user_profile(request):
+	return render(request, 'user_profile.html')
