@@ -170,6 +170,7 @@
                         <div class="card">
                             <div class="header">
                                 <h2 class="title text-center" style = "font-family: Lato">Your Profile</h2>
+                                <a href = "{% url 'edit_user_profile' pk=user.pk %}"><button >Edit your Profile</button></a>
                                 <p class = "text-center" style = "font-family: Lato">First Name: {{user.first_name}} </p>
                                 <p class = "text-center" style = "font-family: Lato">Last Name: {{user.last_name}} </p>
                                 <p class = "text-center" style = "font-family: Lato">Username: {{user.username}} </p>

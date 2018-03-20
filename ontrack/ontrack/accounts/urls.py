@@ -15,5 +15,6 @@ urlpatterns = [
 	path('delete_reminder/<pk>/',views.delete_reminder, name = 'delete_reminder'),
 	path('new_book/',views.new_book, name = 'new_book'),
     path('user_profile/',views.user_profile, name = 'user_profile'),
+    path('edit_user_profile/<pk>/',views.edit_user_profile, name = 'edit_user_profile'),
 
 ]

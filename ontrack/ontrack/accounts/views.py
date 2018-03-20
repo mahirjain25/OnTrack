@@ -16,7 +16,7 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from . import forms
 import wikiquote
-
+from django.contrib.auth.models import User
 class SignUp(generic.CreateView):
     form_class = AuthenticationForm#forms.CustomSignUp
     success_url = reverse_lazy('login')
@@ -128,3 +128,23 @@ def new_book(request):
 @login_required(redirect_field_name='login')
 def user_profile(request):
 	return render(request, 'user_profile.html')
+
+
+
+@login_required(redirect_field_name='login')
+def edit_user_profile(request, pk):
+	template = 'edit_user_profile.html'
+	reminder = get_object_or_404(User, pk = pk)
+	
+	if request.method == 'POST':
+		form = CustomSignUp(request.POST)
+		
+		try:
+			if form.is_valid():
+				form.save()
+				return redirect('dashboard')
+		except Exception as e:
+			return HttpResponse("Reminder was not saved due to {}", e )
+	else:
+		form = CustomSignUp(instance = reminder)
+	return render(request, template ,{"form":form ,"reminder": reminder})
