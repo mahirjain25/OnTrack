@@ -46,34 +46,16 @@ def dashboard(request):
 	temperature = w.get_temperature(unit='celsius')['temp']
 	context = locals()
 	
-	d = {"lightning":"https://i.imgur.com/99BrvGA.png", "thunder":"https://i.imgur.com/99BrvGA.png", "thunderstorm":"https://i.imgur.com/99BrvGA.png" "sun": "https://i.imgur.com/J0heQg7.png", "day": "https://i.imgur.com/J0heQg7.png","drizzle" :"https://i.imgur.com/zFJAEWp.png","rain" :"https://i.imgur.com/zFJAEWp.png", "snow" : "https://i.imgur.com/vOSIvVb.png", "cloud" :"https://cdn2.iconfinder.com/data/icons/wthr/32/cloudy-512.png", "hot" : "https://i.imgur.com/bIcsdMF.png"}
+	d = {"lightning":"https://i.imgur.com/99BrvGA.png", "thunder":"https://i.imgur.com/99BrvGA.png", "thunderstorm":"https://i.imgur.com/99BrvGA.png","sun": "https://i.imgur.com/J0heQg7.png", "day": "https://i.imgur.com/J0heQg7.png","drizzle" :"https://i.imgur.com/zFJAEWp.png","rain" :"https://i.imgur.com/zFJAEWp.png", "snow" : "https://i.imgur.com/vOSIvVb.png", "cloud" :"https://cdn2.iconfinder.com/data/icons/wthr/32/cloudy-512.png", "hot" : "https://i.imgur.com/bIcsdMF.png",}
 	imag  = None
 	for i in d:
 		if i in desc:
 			imag = d[i]
 			break
-	if temperature >= 30:
+	if temperature >= 33:
 		imag = d["hot"]
 	quote, author = wikiquote.quote_of_the_day()
-	return render(request, template_name, {"reminders": reminders, "temp": temperature, "desc": desc, "imag": imag, "books":books, "quote": quote, "author": author})#, {"temp" : temperature, "desc":desc})
-
-	'''def get(self, request, *args, **kwargs):
-		g = GeoIP2()
-		ip = None#request.META.get('REMOTE_ADDR', None)
-		if ip:
-			latlong = g.lat_lon(ip) #function to obtain user's latitude and longitude
-		else:
-			latlong = [12.9141,74.8560] #coordinates of Mangalore
-		owm  = pyowm.OWM('770a092b84f101cdc6b67b1c0976b341')
-		obs = owm.weather_at_coords(latlong[0],latlong[1])
-		w = obs.get_weather()
-		desc = w.get_detailed_status()
-		temperature = w.get_temperature(unit='celsius')['temp']
-		context = locals()
-		context['temp'] = temperature
-		context['desc'] = desc
-		return render(request, 'dashboard.html', {'desc' :desc, 'temp':temperature})
-	'''
+	return render(request, template_name, {"reminders": reminders, "temp": temperature, "desc": desc, "imag": imag, "books":books, "quote": quote, "author": author})
 	
 @login_required(redirect_field_name='login')
 def reminder(request):
@@ -143,17 +125,3 @@ def new_book(request):
 		form = BookForm()
 	return render(request,template,{"form":form})
 	
-@login_required(redirect_field_name='login')
-def new_feedback(request):	
-	
-	if request.method == "POST":
-		form = forms.FeedbackForm(request.POST)
-		if form.is_valid():
-			post = form.save(commit = False)
-			post.published_date = timezone.now()
-			post.author = request.user
-			post.save()
-			return redirect('dashboard')
-	else:
-		form = forms.FeedbackForm()
-	return render(request, 'feedback.html', {'form': form})

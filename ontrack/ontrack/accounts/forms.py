@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Reminder, Book, Feedback
+from .models import *
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -27,7 +27,3 @@ class BookForm(forms.ModelForm):
 		fields = ('isbn','name','author','date_issued','date_of_return','freq',)
 
 
-class FeedbackForm(forms.ModelForm):
-	class Meta:
-		model = Feedback
-		fields = ('text',)

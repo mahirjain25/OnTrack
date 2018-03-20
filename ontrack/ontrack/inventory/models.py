@@ -4,31 +4,31 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Clothes(models.Model):
-    TEES = 'TEEs'
-    PANTS = 'PANTS'
-    JEANS = 'JEANS'
-    SHIRTS = 'SHIRT'
-    SHORTS = 'SHORTS'
-    UNDERGARMENTS = 'UNDERGARMENTS'
-    SOCKS = 'SOCKS'
-    ETHNICTOP = 'ETHNIC TOP'
-    ETHNICBOTTOM = 'ETHNIC BOTTOM'
-    TOP = 'TOP'
-    SKIRT = 'SKIRT'
-    LEGGINGS = 'LEGGINGS'
-    DRESS = 'DRESS'
+    TEES = 'Tee(s)'
+    PANTS = 'Pant(s)'
+    JEANS = 'Jeans'
+    SHIRTS = 'Shirt(s)'
+    SHORTS = 'Shorts'
+    UNDERGARMENTS = 'Undergarment(s)'
+    SOCKS = 'Socks'
+    ETHNICTOP = 'Ethnic Top(s)'
+    ETHNICBOTTOM = 'Ethnic Bottom(s)'
+    TOP = 'Top(s)'
+    SKIRT = 'Skirt(s)'
+    LEGGINGS = 'Leggings'
+    DRESS = 'Dress(es)'
     
-    FORMAL = 'FORMAL'
-    CASUAL = 'CASUAL'
-    SEMIFORMAL = 'SEMI-FORMAL'
-    NIGHTWEAR = 'NIGHT-WEAR'
+    FORMAL = 'Formal'
+    CASUAL = 'Casual'
+    SEMIFORMAL = 'Semi-Formal'
+    NIGHTWEAR = 'Nightwear'
     
     TYPE_CHOICES = (
     	(TEES,'Tee(s)'),
     	(PANTS,'Pants'),
     	(JEANS,'Jeans'),
     	(SHIRTS,'Shirt(s)'),
-    	(SHORTS,'Shorts)'),
+    	(SHORTS,'Shorts'),
     	(UNDERGARMENTS,'Undergarment(s)'),
     	(SOCKS,'Socks'),
     	(ETHNICTOP,'Ethnic Top(s)'),
@@ -58,13 +58,13 @@ class Clothes(models.Model):
     ('Green','Green'),
     ('Grey','Grey'),
     ('Pink','Pink'),
-    ('Other','Other'),
+    ('Custom Colour','Custom Colour'),
     )
     quantity = models.IntegerField(db_column = 'Qty')
-    types = models.CharField(choices=TYPE_CHOICES,max_length =10,blank=False,db_column = 'Type')
-    category = models.CharField(choices=CATEGORY_CHOICES,max_length =10,blank=False,db_column = 'Category')
-    colour = models.CharField(choices=COLOUR_CHOICES,max_length =10,db_column = 'Colour')
-    tag = models.TextField(max_length=20)
+    types = models.CharField(choices=TYPE_CHOICES,max_length =20,blank=False,db_column = 'Type')
+    category = models.CharField(choices=CATEGORY_CHOICES,max_length =20,blank=False,db_column = 'Category')
+    colour = models.CharField(choices=COLOUR_CHOICES,max_length =20,db_column = 'Colour')
+    tag = models.TextField(max_length=35)
     author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 
     def __str__(self):
@@ -77,5 +77,13 @@ class Books(models.Model):
 	author = models.CharField(db_column = 'Author Name',max_length=20)
 	date_issued = models.DateField(db_column='Date of Issue')
 	date_of_return = models.DateField(db_column='Date of Return')
-    
-    
+	user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+	
+	
+class Feedback(models.Model):
+	customer_name = models.CharField(max_length=50,db_column='Name')
+	email = models.EmailField()
+	details = models.TextField()
+	happy = models.BooleanField()
+	date = models.DateField(auto_now_add = True)
+	user = models.ForeignKey(User, on_delete = models.CASCADE, default=None)
