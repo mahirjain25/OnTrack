@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView
 from .forms import *
 from django.shortcuts import redirect
+import matplotlib.pyplot as plt
+import numpy as np
 
 from django.contrib.auth.decorators import login_required
 
@@ -76,7 +78,21 @@ def new_feedback(request):
 
 @login_required(redirect_field_name='login')
 def fitness_view(request):
-	clothes = Clothes.objects.order_by('category')
+	fit = Fitness.objects.order_by('category')
+	date = []
+	calorie = []
+	for i in fit:
+		date.append(i.created_date)
+		calorie.append(i.calories)
+	date = np.array(date)
+	calorie = np.array(calorie)
+	plt.plot(date, calorie)
+	plt.title(User.username +"'s Fitness Information")
+    plt.xlabel('Date')
+    plt.ylabel('Calories Burnt')
+	plt.show()
+
+
 	template_name = 'fitness.html'
 	return render(request,template_name, {"fit": fit})
 	
