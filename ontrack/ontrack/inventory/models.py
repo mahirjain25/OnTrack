@@ -87,3 +87,45 @@ class Feedback(models.Model):
 	happy = models.BooleanField()
 	date = models.DateField(auto_now_add = True)
 	user = models.ForeignKey(User, on_delete = models.CASCADE, default=None)
+
+
+class Fitness(models.Model):
+    RUN = "Run"
+    CYCLE = "Cycle ride"
+    BALL = "Basketball"
+    YOGA = "Yoga"
+    TENNIS = "Tennis"
+    FOOTBALL = "Football"
+    CRICKET =  "Cricket"
+    BADMINTON  = "Badminton"
+    CROSSFIT = "CrossFit"
+    WEIGHTS = "Weight Lifting"
+    JUMP_ROPE = "Jump Rope"
+    SWIM = "SWIMMING"
+
+    CATEGORY_CHOICES = (
+            (RUN , "Run"),
+            (CYCLE , "Cycle ride"),
+            (BALL ,"Basketball"),
+            (YOGA , "Yoga"),
+            (TENNIS , "Tennis"),
+            (FOOTBALL , "Football"),
+            (CRICKET , "Cricket"),
+            (BADMINTON  , "Badminton"),
+            (CROSSFIT , "CrossFit"),
+            (WEIGHTS , "Weight Lifting"),
+            (JUMP_ROPE , "Jump Rope"),
+            (SWIM , "Swimming"),
+    )
+    
+    user = models.ForeignKey(User, on_delete = models.CASCADE, default=None)
+    duration = models.IntegerField()
+    #weight = models.IntegerField(default = 60)
+    calories = models.IntegerField()
+    category = category = models.CharField(choices=CATEGORY_CHOICES,max_length =20,blank=False,db_column = 'Category')
+    created_date = models.DateTimeField(
+    default=timezone.now)
+    
+
+    def __str__(self):
+        return self.category

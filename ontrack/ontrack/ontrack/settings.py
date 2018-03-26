@@ -43,7 +43,16 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 GEOIP_PATH  = "/home/suraj/backup/ontrack/ontrack/location"
 
+STATICFILES_FINDERS = {
+    'djangobower.finders.BowerFinder',
+}
+
 # Application definition
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'jquery-ui',
+    'bootstrap'
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -58,6 +67,8 @@ INSTALLED_APPS = [
     'reminders',
     'inventory',
     'crispy_forms',
+    'schedule',
+    'djangobower'
 ]
 
 MIDDLEWARE = [

@@ -22,3 +22,8 @@ class FeedbackForm(forms.ModelForm):
 	class Meta:
 		model = Feedback
 		fields = ('customer_name','email','details','happy',)
+
+class AddFitnessForm(forms.ModelForm):
+	class Meta:
+		model = Fitness
+		fields = ('category','duration',)
