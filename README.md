@@ -11,6 +11,7 @@ Then cd to OnTrack/ontrack and run ```pipenv shell``` and install the rest of th
 3. Django 2.0: 
 To run the server, change directory to ```OnTrack/ontrack/ontrack``` and run ```python3 manage.py runserver```
 
+Note:-  **For optimal performance, please use Google Chrome to display the webpages!**
 
 **PRE-REQUISITES**
 Install MySQL using the following commands:
