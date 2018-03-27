@@ -91,7 +91,7 @@ class Feedback(models.Model):
 
 class Fitness(models.Model):
     RUN = "Run"
-    CYCLE = "Cycle ride"
+    CYCLE = "Cycle Ride"
     BALL = "Basketball"
     YOGA = "Yoga"
     TENNIS = "Tennis"
@@ -101,11 +101,11 @@ class Fitness(models.Model):
     CROSSFIT = "CrossFit"
     WEIGHTS = "Weight Lifting"
     JUMP_ROPE = "Jump Rope"
-    SWIM = "SWIMMING"
+    SWIM = "Swimming"
 
     CATEGORY_CHOICES = (
             (RUN , "Run"),
-            (CYCLE , "Cycle ride"),
+            (CYCLE , "Cycle Ride"),
             (BALL ,"Basketball"),
             (YOGA , "Yoga"),
             (TENNIS , "Tennis"),
@@ -120,8 +120,8 @@ class Fitness(models.Model):
     
     user = models.ForeignKey(User, on_delete = models.CASCADE, default=None)
     duration = models.IntegerField()
-    #weight = models.IntegerField(default = 60)
-    calories = models.IntegerField()
+    weight = models.FloatField()
+    calories = models.FloatField()
     category = category = models.CharField(choices=CATEGORY_CHOICES,max_length =20,blank=False,db_column = 'Category')
     created_date = models.DateTimeField(
     default=timezone.now)

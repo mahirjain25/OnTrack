@@ -87,20 +87,20 @@ def fitness_view(request):
 	date = np.array(date)
 	calorie = np.array(calorie)
 	plt.plot(date, calorie)
-	plt.title(User.username +"'s Fitness Information")
-    plt.xlabel('Date')
-    plt.ylabel('Calories Burnt')
+	plt.title('Fitness Information')
+	plt.xlabel('Date')
+	plt.ylabel('Calories Burnt')
 	plt.show()
 
 
 	template_name = 'fitness.html'
 	return render(request,template_name, {"fit": fit})
-	
+
 @login_required(redirect_field_name='login')
 def add_fitness(request):
 	MET = {
 	"Run": 7.0,
-	"Cycle": 5.5, 
+	"Cycle Ride": 5.5, 
 	"Jump Rope": 10.0,
 	"Tennis" :6.8,
 	"Football": 10.3, 
@@ -108,18 +108,16 @@ def add_fitness(request):
 	"Badminton": 5.5, 
 	"Basketball": 11.1, 
 	"Yoga": 3.2, 
-	"Weightlifting": 10.9,
+	"Weight Lifting": 10.9,
 	"Cricket":6.1,
 	"CrossFit": 10.2
-
-
 	}
 	if request.method == "POST":
 		form = AddFitnessForm(request.POST)
 		if form.is_valid():
 			## Logic for calculating calories
 			post = form.save(commit = False)
-			post.calories = int(MET[post.category] * post.weight * post.duration /60.0)
+			post.calories = MET[post.category] * post.weight * post.duration /60.0
 			post.user = request.user
 			post.save()
 			return redirect('fitness')

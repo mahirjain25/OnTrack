@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='fitness',
             name='calories',
-            field=models.IntegerField(default='lol'),
+            field=models.IntegerField(default=1),
             preserve_default=False,
         ),
         migrations.AddField(

@@ -43,9 +43,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 GEOIP_PATH  = "/home/suraj/backup/ontrack/ontrack/location"
 
-STATICFILES_FINDERS = {
+'''STATICFILES_FINDERS = {
     'djangobower.finders.BowerFinder',
-}
+}'''
 
 # Application definition
 BOWER_INSTALLED_APPS = (
