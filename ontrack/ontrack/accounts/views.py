@@ -13,6 +13,7 @@ from .forms import *
 import pyowm
 from django.shortcuts import redirect
 from .models import *
+from django.http import *
 from django.contrib.auth.decorators import login_required
 from . import forms
 import wikiquote
@@ -84,14 +85,13 @@ def edit_reminder(request, pk):
 	reminder = get_object_or_404(Reminder, pk = pk)
 	
 	if request.method == 'POST':
+		reminder.delete()
 		form = ReminderForm(request.POST)
-		
-		try:
-			if form.is_valid():
-				form.save()
-				return redirect('dashboard')
-		except Exception as e:
-			return HttpResponse("Reminder was not saved due to {}", e )
+		if form.is_valid():
+			post = form.save(commit = False)
+			post.author = request.user
+			post.save()
+			return redirect('dashboard')	
 	else:
 		form = ReminderForm(instance = reminder)
 	return render(request, template ,{"form":form ,"reminder": reminder})
@@ -118,7 +118,7 @@ def new_book(request):
 		if form.is_valid():
 			post = form.save(commit = False)
 			post.published_date = timezone.now()
-			#post.author = request.user
+			post.user = request.user
 			post.save()
 			return redirect('dashboard')
 	else:

@@ -90,7 +90,7 @@ def fitness_view(request):
 	plt.title('Fitness Information')
 	plt.xlabel('Date')
 	plt.ylabel('Calories Burnt')
-	plt.show()
+	plt.savefig('test.png',bbox_inches='tight')
 
 
 	template_name = 'fitness.html'

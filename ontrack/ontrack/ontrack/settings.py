@@ -68,7 +68,9 @@ INSTALLED_APPS = [
     'inventory',
     'crispy_forms',
     'schedule',
-    'djangobower'
+    'djangobower',
+    'taggit',
+    'timetable'
 ]
 
 MIDDLEWARE = [
