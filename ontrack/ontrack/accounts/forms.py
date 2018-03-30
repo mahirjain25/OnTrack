@@ -27,3 +27,13 @@ class BookForm(forms.ModelForm):
 		fields = ('isbn','name','author','date_issued','date_of_return','freq',)
 
 
+class NumberOfSubjectsForm(forms.ModelForm):
+	class Meta:
+		model = NoOfSubjects
+		fields = ('number',)
+
+class SubjectsForm(forms.ModelForm):
+
+	class Meta:
+		model = Subjects
+		fields = ('sub1','sub2','sub3','sub4','sub5','sub6','sub7',)

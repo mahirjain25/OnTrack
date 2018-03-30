@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>File Allocation</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+			<style>
+                h1, h2{
+                    text-align: center;
+                }
+	table, td {
+		border: 1px solid black;
+
+
+	}
+    th, td {
+    padding: 25px;
+    text-align: center;
+    }
+
+
+				ul {
+			font-family: 'Times New Roman', Times, serif;
+			font-size: 30px;
+		}
+
+    .form-control {
+        width: 100%;
+    }
+
+
+    thead{
+        text-align: center;
+    }
+    .table{
+        width:80%;
+        margin-left: 150px;
+
+    }
+
+	</style>
+
+		<script type="text/javascript">
+
+        var res,pro;
+        var no_files;
+        var memory;
+        var resource;
+
+			function BuildFormFields($amount) // For Resorce allocation
+			{
+                // form1 = document.resource;
+                //console.log(form1);
+                res = $amount;
+				var
+					$container = document.getElementById('FormFields1'),
+					$item, $field, $i;
+
+				$container.innerHTML = '';
+				for ($i = 0; $i < $amount; $i++) {
+					$item = document.createElement('div');
+					$item.style.margin = '10px';
+
+
+
+					//$field = document.createElement('span');
+					//$field.innerHTML = 'Resource ' + $i;
+					//$field.style.marginRight = '10px';
+                    $field = document.createElement('label');
+                    $field.innerHTML = 'Subject '+$i + "'s name";
+					$item.appendChild($field);
+
+					$field = document.createElement('input');
+					$field.name = $i;
+					$field.type = 'text';
+                    $field.setAttribute("class","form-control");
+					$item.appendChild($field);
+
+
+					$container.appendChild($item);
+                   // resource[$i] = form1[$i].value;
+
+				}
+			BuildFormFields3($amount)
+              //  console.log(resource);
+            }
+            
+
+			function BuildFormFields3($amount) //For Allocation
+			{
+				no_files = $amount;
+                console.log(res);
+				var
+					$container = document.getElementById('FormFields2'),
+					$item, $field, $i;
+
+				$container.innerHTML = '';
+				for ($i = 0; $i < $amount; $i++) {
+                    
+                        $item = document.createElement('div');
+                        $item.style.margin = '10px';
+
+                        $field = document.createElement('label');
+                        $field.innerHTML = 'Subject '+$i+ "'s number of hours" ;
+                        //$field.style.marginRight = '10px';
+                        $item.appendChild($field);
+
+                        $field = document.createElement('input');
+
+                        $field.name = $i;
+                        $field.type = 'number';
+                        $field.setAttribute("class","form-control");
+                        $item.appendChild($field);
+
+                     //   console.log($item);
+                        $container.appendChild($item);
+                    
+
+
+				}
+            }
+
+            function create_graph($amount)
+            {
+            	memory = $amount; 
+
+            	console.log(res)
+            	var
+					$container = document.getElementById('FormFields2'),
+					$number, $field, $i;
+				no_files = $amount;
+				$container.innerHTML = '';
+				for ($i = 0; $i < $amount; $i++) {
+                    
+                        $item = document.createElement('button');
+                        $item.style.margin = '10px';
+
+                        $field = document.createElement('label');
+                        $field.innerHTML =$i ;
+                        $field.style.marginRight = '10px';
+                        $item.appendChild($field);
+
+                       
+
+                        $field.name = $i;
+                        $field.id = $i;
+         
+                        $field.setAttribute("class","form-control");
+                        $item.appendChild($field);
+
+                     //   console.log($item);
+                        $container.appendChild($item);
+                    
+
+
+				}
+
+            }
+
+
+			function createFile()
+			{
+						var res_form = document.Need;
+						var colors = ["yellow", "red", "green", "blue"]
+						var j =0;
+						
+
+						var tab_need = document.getElementById("tab_need");
+						var row = tab_need.insertRow(0);
+						var cell = row.insertCell(0);
+						cell.innerHTML = "<b>File Name</b>";
+                        var pro_head = tab_need.insertRow(1);
+                        var cell = pro_head.insertCell(0);
+                        cell.innerHTML = "<b>File Size</b>";
+                        var color_head = tab_need.insertRow(2 );
+                        var cell = color_head.insertCell(0);
+                        cell.innerHTML = "<b>Colour Assigned </b>"
+                        var tmp = document.getElementsByClassName('form-control');
+                        console.log(tmp);
+                        $container = document.getElementById('FormFields3')
+	                  for(i=2;i<=no_files+1;i++)
+	                  {
+	                      cell = row.insertCell(i-1);
+	                      cell.innerHTML = tmp[i].value;
+	                  }
+
+	                  for(i = no_files+2;i<=2*no_files +1;i++)
+	                  {
+	                      cell = pro_head.insertCell(i- no_files - 1);
+	                      cell.innerHTML = tmp[i].value;
+	                  }
+	                  for(i=1;i<=no_files;i++)
+	                  {
+	                      cell = color_head.insertCell(i);
+	                      cell.style.backgroundColor = colors[i-1];
+	                  }
+	               
+	                  var count = 0;
+	                  var label_count = 0;
+	                  for(i=1;i<=no_files;i++)
+	                  {
+	                  	
+	                  	for (j = 0; j < tmp[no_files+1 + i].value; j++) {
+                    	console.log(j);
+                        $item = document.createElement('button');
+                        $item.style.margin = '10px';
+                        $item.style.backgroundColor = colors[i-1];
+
+                        $field = document.createElement('label');
+                        $field.innerHTML =label_count ;
+                        $field.style.marginRight = '10px';
+                        $item.appendChild($field);
+
+                       
+
+                        $field.name = label_count;
+                        $field.id = label_count;
+         
+                        $field.setAttribute("class","form-control");
+                        $item.appendChild($field);
+
+                     //   console.log($item);
+                        $container.appendChild($item);
+                    	label_count+=1;
+
+
+						}
+						count += Number(tmp[no_files+1 + i].value); 
+
+	                  }
+	                  console.log("count"+count);
+	                  for(j= count;j<memory;j++)
+	                  {
+	                  	console.log(j);
+	                  	 $item = document.createElement('button');
+                        $item.style.margin = '10px';
+
+                        $field = document.createElement('label');
+                        $field.innerHTML =label_count ;
+                        $field.style.marginRight = '10px';
+                        $item.appendChild($field);
+
+                       
+
+                        $field.name = label_count;
+                        $field.id = label_count;
+         
+                        $field.setAttribute("class","form-control");
+                        $item.appendChild($field);
+
+                     //   console.log($item);
+                        $container.appendChild($item);
+                        label_count+=1;
+
+	                  }
+
+
+
+
+			}
+			function show_graph()
+			{
+				var count = 0;
+				var tmp = document.getElementsByClassName('form-control');
+	                  for(i=1;i<=no_files;i++)
+	                  {
+	                  	
+	                  	for (j = 0; j < tmp[2*i+1].value; j++) {
+                    
+                        $item = document.createElement('button');
+                        $item.style.margin = '10px';
+                        $item.style.backgroundColor = colors[i];
+
+                        $field = document.createElement('label');
+                        $field.innerHTML =count+j ;
+                        $field.style.marginRight = '10px';
+                        $item.appendChild($field);
+
+                       
+
+                        $field.name = j;
+                        $field.id = j;
+         
+                        $field.setAttribute("class","form-control");
+                        $item.appendChild($field);
+
+                     //   console.log($item);
+                        $container.appendChild($item);
+                    
+
+
+						}
+						count += tmp[2*i+1].value; 
+
+	                  }
+	                  for(;j<memory;j++)
+	                  {
+	                  	 $item = document.createElement('button');
+                        $item.style.margin = '10px';
+
+                        $field = document.createElement('label');
+                        $field.innerHTML =j ;
+                        $field.style.marginRight = '10px';
+                        $item.appendChild($field);
+
+                       
+
+                        $field.name = j;
+                        $field.id = j;
+         
+                        $field.setAttribute("class","form-control");
+                        $item.appendChild($field);
+
+                     //   console.log($item);
+                        $container.appendChild($item);
+
+	                  }
+
+			}
+
+		</script>
+
+	</head>
+	<body>
+		<div class = "panel panel-primary"
+	        style="margin : 0.25cm 0.25cm 0.25cm 0.25cm;">
+	        <div class="panel-heading">
+	            <h2>What does your week generally look like?</h2>
+	        </div>
+			<div class="panel-body">
+				<form name = "resource">
+		        <form name = "Need">
+		            <div class = "form-group" style="margin-left:50px;float:left;">
+					<label>Number of subjects</label> <input class="form-control" type="Number" onkeyup="BuildFormFields(y = parseInt(this.value, 10));" />
+					<div id="FormFields1"></div>
+		            </div>
+					<!-- <button type="button" onclick="banker()">Try it</button> -->
+				</form>
+				 <form name = "TableOfFiles">
+		             <div class = "form-group" style="margin-left:50px;float:left;margin-top:60px;">
+					<div id="FormFields2"></div>
+		            </div>
+				</form>
+				<br>
+				<form name = "Graph">
+		             <div class = "form-group" style="margin-left:50px;float:left;margin-top:60px;">
+					<div id="FormFields3"></div>
+		            </div>
+				</form>
+				<!-- <button type="button" onclick="banker()">Try it</button> -->
+		        <!-- <br>
+		        <br>
+		        <br>
+		        <br><br>
+		        <br><br>
+		        <br>
+		        <br> -->
+
+				<table id="tab_need" class="table table-hover">
+
+
+
+				</table>
+		        <!-- <br>
+		        <br>
+		        <br>
+		        <br><br>
+		        <br><br>
+		        <br> -->
+		        <table id="tab_alloc" class="table table-hover">
+
+
+				</table>
+
+		        <!-- <br>
+		        <br> -->
+		        <ul id = "printing">
+
+		        </ul>
+	        </div>
+			<div class="panel-footer">
+	            <button class="btn btn-primary btn-success" onclick="createFile()">Allocate</button>
+	        </div>
+		</div>
+
+
+	</body>
+</html>

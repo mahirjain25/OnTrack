@@ -8,6 +8,7 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 from django.utils import timezone
+import pickle
 
 class Reminder(models.Model):
 	author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
@@ -52,3 +53,46 @@ class Book(models.Model):
 			return self.name
     
    
+class NoOfSubjects(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+	number = models.IntegerField()
+
+	def publish(self):
+		self.save()
+
+	def __str__(self):
+		return self.number, 
+
+	class Meta:
+		def __unicode__(self):
+			return self.number
+
+
+
+class Subjects(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+	
+	sub1 = models.CharField(max_length = 30)
+	sub2 = models.CharField(blank = True ,max_length = 30, null = True)
+	sub3 = models.CharField(blank = True,max_length = 30,null = True)
+	sub4 = models.CharField(blank = True,max_length = 30,null = True)
+	sub5 = models.CharField(blank = True,max_length = 30,null = True)
+	sub6 = models.CharField(blank = True,max_length = 30,null = True)
+	sub7 = models.CharField(blank = True,max_length = 30,null = True)
+
+	def publish(self):
+		self.save()
+
+	def __str__(self):
+		return self.sub1, 
+
+	class Meta:
+		def __unicode__(self):
+			return self.sub1
+
+# class Timetable(models.Model):
+# 	subjects = Subject.objects
+# 	for i in subjects:
+# 		if i.user.username ==User.username:
+# 			break
+	

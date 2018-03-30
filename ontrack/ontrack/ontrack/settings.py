@@ -67,10 +67,7 @@ INSTALLED_APPS = [
     'reminders',
     'inventory',
     'crispy_forms',
-    'schedule',
-    'djangobower',
-    'taggit',
-    'timetable'
+
 ]
 
 MIDDLEWARE = [

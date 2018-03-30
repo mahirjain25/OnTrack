@@ -18,6 +18,11 @@ from django.contrib.auth.decorators import login_required
 from . import forms
 import wikiquote
 from django.contrib.auth.models import User
+import pickle
+import random
+
+quotes = {'Jimi Hendrix' : "When the power of love overcomes the love of power, the world will know peace.", 'Robert Frost': "The only way round is through." , 'Robert Frost': "By working faithfully eight hours a day you may eventually get to be boss and work twelve hours a day.", 'Denise Brennan-Nelson': "Someday is not a day of the week.", 'Robert Schuller': "Tough times never last, but tough people do.", 'Jamie Paolinetti': "Limitations live only in our minds. But if we use our imaginations, our possibilities become limitless.", 'Karen Lamb' :"A year from now you may wish you had started today.", 'Lao Tzu': "The journey of a thousand miles begins with one step."}
+
 class SignUp(generic.CreateView):
     form_class = AuthenticationForm#forms.CustomSignUp
     success_url = reverse_lazy('login')
@@ -55,7 +60,9 @@ def dashboard(request):
 			break
 	if temperature >= 33:
 		imag = d["hot"]
-	quote, author = wikiquote.quote_of_the_day()
+	author = random.choice(list(quotes))
+	quote = quotes[author]
+	#quote, author = wikiquote.quote_of_the_day()
 	return render(request, template_name, {"reminders": reminders, "temp": temperature, "desc": desc, "imag": imag, "books":books, "quote": quote, "author": author})
 	
 @login_required(redirect_field_name='login')
@@ -148,3 +155,19 @@ def edit_user_profile(request, pk):
 	else:
 		form = CustomSignUp(instance = reminder)
 	return render(request, template ,{"form":form ,"reminder": reminder})
+
+
+
+@login_required(redirect_field_name='login')
+def enter_subjects(request):
+	template = 'enter_subjects.html'
+	if request.method == "POST":
+		form = SubjectsForm(request.POST)
+		if form.is_valid():
+			post = form.save(commit = False) 
+			post.user = request.user
+			post.save()
+			return redirect('dashboard')
+	else:
+		form = SubjectsForm()
+	return render(request,template,{"form":form})
