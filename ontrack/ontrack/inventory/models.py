@@ -128,4 +128,4 @@ class Fitness(models.Model):
     
 
     def __str__(self):
-        return self.category
+        return str((self.created_date, self.calories))
