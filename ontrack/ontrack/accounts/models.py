@@ -96,3 +96,50 @@ class Subjects(models.Model):
 # 		if i.user.username ==User.username:
 # 			break
 	
+class Timetable(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+	Monday_Hour1 = models.CharField(blank = True ,max_length = 30, null = True)
+	Monday_Hour2 = models.CharField(blank = True ,max_length = 30, null = True)
+	Monday_Hour3 = models.CharField(blank = True ,max_length = 30, null = True)
+	Monday_Hour4 = models.CharField(blank = True ,max_length = 30, null = True)
+	Monday_Hour5 = models.CharField(blank = True ,max_length = 30, null = True)
+	Monday_Hour6 = models.CharField(blank = True ,max_length = 30, null = True)
+	Monday_Hour7 = models.CharField(blank = True ,max_length = 30, null = True)
+	Monday_Hour8 = models.CharField(blank = True ,max_length = 30, null = True)
+	Tuesday_Hour1 = models.CharField(blank = True ,max_length = 30, null = True)
+	Tuesday_Hour2 = models.CharField(blank = True ,max_length = 30, null = True)
+	Tuesday_Hour3 = models.CharField(blank = True ,max_length = 30, null = True)
+	Tuesday_Hour4 = models.CharField(blank = True ,max_length = 30, null = True)
+	Tuesday_Hour5 = models.CharField(blank = True ,max_length = 30, null = True)
+	Tuesday_Hour6 = models.CharField(blank = True ,max_length = 30, null = True)
+	Tuesday_Hour7 = models.CharField(blank = True ,max_length = 30, null = True)
+	Tuesday_Hour8 = models.CharField(blank = True ,max_length = 30, null = True)
+	Wednesday_Hour1 = models.CharField(blank = True ,max_length = 30, null = True)
+	Wednesday_Hour2 = models.CharField(blank = True ,max_length = 30, null = True)
+	Wednesday_Hour3 = models.CharField(blank = True ,max_length = 30, null = True)
+	Wednesday_Hour4 = models.CharField(blank = True ,max_length = 30, null = True)
+	Wednesday_Hour5 = models.CharField(blank = True ,max_length = 30, null = True)
+	Wednesday_Hour6 = models.CharField(blank = True ,max_length = 30, null = True)
+	Wednesday_Hour7 = models.CharField(blank = True ,max_length = 30, null = True)
+	Wednesday_Hour8 = models.CharField(blank = True ,max_length = 30, null = True)
+	Thursday_Hour1 = models.CharField(blank = True ,max_length = 30, null = True)
+	Thursday_Hour2 = models.CharField(blank = True ,max_length = 30, null = True)
+	Thursday_Hour3 = models.CharField(blank = True ,max_length = 30, null = True)
+	Thursday_Hour4 = models.CharField(blank = True ,max_length = 30, null = True)
+	Thursday_Hour5 = models.CharField(blank = True ,max_length = 30, null = True)
+	Thursday_Hour6 = models.CharField(blank = True ,max_length = 30, null = True)
+	Thursday_Hour7 = models.CharField(blank = True ,max_length = 30, null = True)
+	Thursday_Hour8 = models.CharField(blank = True ,max_length = 30, null = True)
+	Friday_Hour1 = models.CharField(blank = True ,max_length = 30, null = True)
+	Friday_Hour2 = models.CharField(blank = True ,max_length = 30, null = True)
+	Friday_Hour3 = models.CharField(blank = True ,max_length = 30, null = True)
+	Friday_Hour4 = models.CharField(blank = True ,max_length = 30, null = True)
+	Friday_Hour5 = models.CharField(blank = True ,max_length = 30, null = True)
+	Friday_Hour6 = models.CharField(blank = True ,max_length = 30, null = True)
+	Friday_Hour7 = models.CharField(blank = True ,max_length = 30, null = True)
+	Friday_Hour8 = models.CharField(blank = True ,max_length = 30, null = True)
+
+
+
+
+
