@@ -17,5 +17,6 @@ urlpatterns = [
     path('user_profile/',views.user_profile, name = 'user_profile'),
     path('edit_user_profile/<pk>/',views.edit_user_profile, name = 'edit_user_profile'),
     path('enter_subjects/',views.enter_subjects, name = 'enter_subjects'),
+    path('timetable/',views.timetable, name = 'timetable'),
 
 ]

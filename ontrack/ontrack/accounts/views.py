@@ -162,12 +162,18 @@ def edit_user_profile(request, pk):
 def enter_subjects(request):
 	template = 'enter_subjects.html'
 	if request.method == "POST":
-		form = SubjectsForm(request.POST)
+		form = TimetableForm(request.POST)
 		if form.is_valid():
 			post = form.save(commit = False) 
 			post.user = request.user
 			post.save()
-			return redirect('dashboard')
+			return redirect('timetable')
 	else:
-		form = SubjectsForm()
+		form = TimetableForm()
 	return render(request,template,{"form":form})
+
+@login_required(redirect_field_name='login')
+def timetable(request):
+	timetable = Timetable.objects.all()
+	template_name = 'timetable.html'
+	return render(request, template_name,{'timetable': timetable})

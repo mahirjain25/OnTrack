@@ -37,3 +37,9 @@ class SubjectsForm(forms.ModelForm):
 	class Meta:
 		model = Subjects
 		fields = ('sub1','sub2','sub3','sub4','sub5','sub6','sub7',)
+
+class TimetableForm(forms.ModelForm):
+
+	class Meta:
+		model = Timetable
+		fields = ('Monday_Hour1','Monday_Hour2','Monday_Hour3','Monday_Hour4','Monday_Hour5','Monday_Hour6','Monday_Hour7','Monday_Hour8','Tuesday_Hour1','Tuesday_Hour2','Tuesday_Hour3','Tuesday_Hour4','Tuesday_Hour5','Tuesday_Hour6','Tuesday_Hour7','Tuesday_Hour8','Wednesday_Hour1','Wednesday_Hour2','Wednesday_Hour3','Wednesday_Hour4','Wednesday_Hour5','Wednesday_Hour6','Wednesday_Hour7','Wednesday_Hour8','Thursday_Hour1','Thursday_Hour2','Thursday_Hour3','Thursday_Hour4','Thursday_Hour5','Thursday_Hour6','Thursday_Hour7','Thursday_Hour8','Friday_Hour1','Friday_Hour1','Friday_Hour2','Friday_Hour3','Friday_Hour4','Friday_Hour5','Friday_Hour6','Friday_Hour7','Friday_Hour8',)

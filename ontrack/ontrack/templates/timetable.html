@@ -1,0 +1,84 @@
+{% for i in timetable %}
+
+	{% if i.user.username == user.username%}
+		<div class="container">
+		  <h2>Timetable:</h2>           
+		  <table class="table table-striped">
+		    <thead>
+		      <tr>
+		      	<th>Day</th>
+		        <th>Hour 1</th>
+		        <th>Hour 2</th>
+		        <th>Hour 3</th>
+		        <th>Hour 4</th>
+		        <th>Hour 5</th>
+		        <th>Hour 6</th>
+		        <th>Hour 7</th>
+		        <th>Hour 8</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		      	<th>Monday</th>
+		        <td>{{i.Monday_Hour1}}</td>
+		        <td>{{i.Monday_Hour2}}</td>
+		        <td>{{i.Monday_Hour3}}</td>
+		        <td>{{i.Monday_Hour4}}</td>
+		        <td>{{i.Monday_Hour5}}</td>
+		        <td>{{i.Monday_Hour6}}</td>
+		        <td>{{i.Monday_Hour7}}</td>
+		        <td>{{i.Monday_Hour8}}</td>
+		      </tr>
+		      <tr>
+		      	<th>Tuesday</th>
+		        <td>{{i.Tuesday_Hour1}}</td>
+		        <td>{{i.Tuesday_Hour2}}</td>
+		        <td>{{i.Tuesday_Hour3}}</td>
+		        <td>{{i.Tuesday_Hour4}}</td>
+		        <td>{{i.Tuesday_Hour5}}</td>
+		        <td>{{i.Tuesday_Hour6}}</td>
+		        <td>{{i.Tuesday_Hour7}}</td>
+		        <td>{{i.Tuesday_Hour8}}</td>
+		      </tr>
+		       <tr>
+		      	<th>Wednesday</th>
+		        <td>{{i.Wednesday_Hour1}}</td>
+		        <td>{{i.Wednesday_Hour2}}</td>
+		        <td>{{i.Wednesday_Hour3}}</td>
+		        <td>{{i.Wednesday_Hour4}}</td>
+		        <td>{{i.Wednesday_Hour5}}</td>
+		        <td>{{i.Wednesday_Hour6}}</td>
+		        <td>{{i.Wednesday_Hour7}}</td>
+		        <td>{{i.Wednesday_Hour8}}</td>
+		      </tr>
+		      		      <tr>
+		      	<th>Thursday</th>
+		        <td>{{i.Thursday_Hour1}}</td>
+		        <td>{{i.Thursday_Hour2}}</td>
+		        <td>{{i.Thursday_Hour3}}</td>
+		        <td>{{i.Thursday_Hour4}}</td>
+		        <td>{{i.Thursday_Hour5}}</td>
+		        <td>{{i.Thursday_Hour6}}</td>
+		        <td>{{i.Thursday_Hour7}}</td>
+		        <td>{{i.Thursday_Hour8}}</td>
+		      </tr>
+		      		      <tr>
+		      	<th>Friday</th>
+		        <td>{{i.Friday_Hour1}}</td>
+		        <td>{{i.Friday_Hour2}}</td>
+		        <td>{{i.Friday_Hour3}}</td>
+		        <td>{{i.Friday_Hour4}}</td>
+		        <td>{{i.Friday_Hour5}}</td>
+		        <td>{{i.Friday_Hour6}}</td>
+		        <td>{{i.Friday_Hour7}}</td>
+		        <td>{{i.Friday_Hour8}}</td>
+		      </tr>
+
+		    </tbody>
+		  </table>
+		</div>
+
+	{% endif%}
+
+
+{% endfor%}
