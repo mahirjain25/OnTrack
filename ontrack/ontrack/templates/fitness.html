@@ -169,51 +169,37 @@
                                 </p>
                                 <a href = "{% url 'add_fitness' %}"><button style="padding-top: 5px;">Add a fitness activity</button></a>
 
+                                <div class="content">
+                                <div class="table-full-width">
+                                    <div class="col-sm-3">
+                                        <table class="table table-bordered " border="1">
+                                            <tr><td colspan="4">Fitness statistics!</td></tr>
+                                            <tr>
+                                                    <td>Date</td>
+                                                    <td>Category</td>
+                                                    <td>Duration</td>
+                                                    <td>Calories</td>
+                                                </tr>
+
+                                            {% for i in fit %}
+                                                <tr>
+                                                    <td>{{i.created_date}}</td>
+                                                    <td>{{i.category}}</td>
+                                                    <td>{{i.duration}}</td>
+                                                    <td>{{i.calories}}</td>
+                                                </tr>
+                                            {% endfor %}</table>
+                                    
+                                        </table>
+                                    </div>
                             
 
-                                <div class="footer">
-                                    <hr>
-                                    <div class="stats">
-                                        <i class="fa fa-history"></i> Updated 3 minutes ago
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
 
-                    <div class="content">
-                                <div class="table-full-width">
-                                    <table class="table">
-                                        <tbody>
-                                            {% for cloth in clothes %}
-                                                {% if user.username == cloth.author.username %}
-                                                <tr>
-                                                    <td>
-                                                        <div class="checkbox">
-                                                            <input id="checkbox1" type="checkbox">
-                                                            <label for="checkbox1"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>{{cloth.quantity}} {{cloth.colour}} {{cloth.category}} {{cloth.types}}</td>
-                                                    <td class="td-actions text-right">
-                                                        <a href="{% url 'edit_cloth' pk=cloth.pk %}">
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
-                                                        </a>
-                                                         <a href="{% url 'delete_cloth' pk=cloth.pk %}">
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
+                   
     </div>
 </div>
   <footer class="footer" data-color="blue">
