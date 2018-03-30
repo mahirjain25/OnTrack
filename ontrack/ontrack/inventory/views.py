@@ -79,34 +79,33 @@ def new_feedback(request):
 @login_required(redirect_field_name='login')
 def fitness_view(request):
 	fit = Fitness.objects.order_by('category')
-	date = []
+	dt = []
 	calorie = []
 	
 
 	for i in fit:
 		if(i.user.username==User.username):
 			continue
-		date.append(i.created_date)
+		dt.append(i.created_date)
 		calorie.append(i.calories)
-	for i in range(len(date)):
-		for j in range(i+1, len(date)):
-			if(j>len(date)):
+	'''for i in range(len(dt)):
+		for j in range(i+1, len(dt)):
+			if(j>len(dt)):
 				break
 			
-			if(date[j].date() ==date[i].date()):
-				
+			if(dt[j].date() ==dt[i].date()):
 				calorie[i]+= calorie[j]
-				del date[j]
+				del dt[j]
 				del calorie[j]
-			if(j+1>len(date)):
-				break
-	date.pop(-1)
+			if(j+1>len(dt)):
+				break'''
+	dt.pop(-1)
 	calorie.pop(-1)
-	date = np.array(date)
+	dt = np.array(dt)
 	calorie = np.array(calorie)
 	fig = plt.figure()
 	ax = fig.add_subplot(111)
-	ax.plot(date, calorie)
+	ax.plot(dt, calorie)
 
  # format your data to desired format. Here I chose YYYY-MM-DD but you can set it to whatever you want.
 	import matplotlib.dates as mdates
@@ -114,12 +113,11 @@ def fitness_view(request):
 
 # rotate and align the tick labels so they look better
 	fig.autofmt_xdate()
-	plt.scatter(date, calorie)
+	plt.scatter(dt, calorie)
 	plt.title('Fitness Information')
 	plt.xlabel('Date')
 	plt.ylabel('Calories Burnt')
 	plt.savefig("./accounts/test.png",bbox_inches='tight')
-	plt.show()
 	
 
 	template_name = 'fitness.html'

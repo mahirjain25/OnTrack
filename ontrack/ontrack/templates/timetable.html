@@ -1,8 +1,10 @@
+{% extends 'extender.html' %}
+{% block content %}
 {% for i in timetable %}
 
 	{% if i.user.username == user.username%}
-		<div class="container">
-		  <h2>Timetable:</h2>           
+		<div class="container text-center">
+		  <h2> {{user.username}}'s Timetable:</h2>           
 		  <table class="table table-striped">
 		    <thead>
 		      <tr>
@@ -82,3 +84,4 @@
 
 
 {% endfor%}
+{% endblock %}
