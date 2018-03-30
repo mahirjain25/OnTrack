@@ -1,12 +1,11 @@
+{% load crispy_forms_tags %}
 <!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
-	<title>{{user.username}}'s Inventory</title>
-
+	<title> OnTrack </title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
@@ -19,7 +18,8 @@
 
     <!--  Light Bootstrap Table core CSS    -->
     <link href="/static/assets/css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet"/>
-
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
@@ -28,7 +28,7 @@
 </head>
 <body>
 
-<div class="wrapper animated fadeInTop">
+<div class="wrapper animated fadeInLeft">
     <div class="sidebar" data-color="azure" data-image="#">
 
     <!--
@@ -45,32 +45,32 @@
                 </a>
             </div>
 
-            <ul class="nav" style="padding-top:40px;">
+            <ul class="nav" style="padding-top:50px;">
                 <li style="padding-top:50px;">
                     <a href="/accounts/dashboard">
                         <i class="pe-7s-home"></i>
                         <p>Dashboard Home</p>
                     </a>
                 </li>
-                <li style="padding-top:40px;">
-                   <a href="/accounts/user_profile">
+                <li style="padding-top:50px;">
+                    <a href="/accounts/user_profile">
                         <i class="pe-7s-id"></i>
                         <p>User Profile</p>
                     </a>
                 </li>
-                <li class = "active" style="padding-top:40px;">
+                <li  style="padding-top:50px;">
                     <a href="/inventory/inventory">
                         <i class="pe-7s-id"></i>
                         <p>My Clothes</p>
                     </a>
                 </li>
-                <li style="padding-top:40px;">
+                <li style="padding-top:50px;">
                     <a href="{% url 'feedback' %}">
                         <i class="pe-7s-comment"></i>
                         <p>Give Feedback</p>
                     </a>
                 </li>
-                <li style="padding-top:40px;">
+                <li style="padding-top:50px;">
                     <a href="notifications.html">
                         <i class="pe-7s-bell"></i>
                         <p>Notifications</p>
@@ -114,51 +114,23 @@
         </nav>
 
 
-        <div class="col-md-12">
-                        <div class="card ">
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card text-center">
                             <div class="header">
-                                <h2 class="title text-center">Your Clothing Inventory</h2>
-                                <p class="category text-center">Let's add your wardrobe!</p>
-                                <a href = "{% url 'add_clothes' %}"><button style="padding-top: 5px;">Add a clothing item</button></a>
-
-                            </div>
-                            <div class="content">
-                                <div class="table-full-width">
-                                    <table class="table">
-                                        <tbody>
-                                            {% for cloth in clothes %}
-                                                {% if user.username == cloth.author.username %}
-                                                <tr>
-                                                    <td>
-                                                        <div class="checkbox">
-                                                            <input id="checkbox1" type="checkbox">
-                                                            <label for="checkbox1"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>{{cloth.quantity}} {{cloth.colour}} {{cloth.category}} {{cloth.types}}</td>
-                                                    <td class="td-actions text-right">
-                                                        <a href="{% url 'edit_cloth' pk=cloth.pk %}">
-                                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
-                                                            <i class="fa fa-edit"></i>
-                                                        </button>
-                                                        </a>
-                                                         <a href="{% url 'delete_cloth' pk=cloth.pk %}">
-                                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                {% endif %}
-                                            {% endfor %}
-                                            
-                                        </tbody>
-                                    </table>
-                                </div>
+                                {% block content %}
+                                {% endblock %}
                             </div>
                         </div>
                     </div>
-    </div>
+
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>
   <footer class="footer" data-color="blue">
             <div class="container-fluid ">
@@ -196,7 +168,7 @@
 
         	$.notify({
             	icon: 'pe-7s-smile',
-            	message: "Welcome to your Inventory!"
+            	message: "Let us know where we can improve!"
 
             },{
                 type: 'info',

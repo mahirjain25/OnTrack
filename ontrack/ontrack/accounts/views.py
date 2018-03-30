@@ -144,17 +144,14 @@ def edit_user_profile(request, pk):
 	reminder = get_object_or_404(User, pk = pk)
 	
 	if request.method == 'POST':
-		form = CustomSignUp(request.POST)
+		form = CustomSignUp(request.POST, instance = request.user)
+		if form.is_valid():
+			form.save()
+			return redirect('dashboard')
 		
-		try:
-			if form.is_valid():
-				form.save()
-				return redirect('dashboard')
-		except Exception as e:
-			return HttpResponse("Reminder was not saved due to {}", e )
 	else:
-		form = CustomSignUp(instance = reminder)
-	return render(request, template ,{"form":form ,"reminder": reminder})
+		form = CustomSignUp(instance = request.user)
+	return render(request, template ,{"form":form,"reminder":reminder})
 
 
 

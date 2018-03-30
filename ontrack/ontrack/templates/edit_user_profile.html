@@ -1,8 +1,12 @@
+{% extends 'extender.html' %}
+{% block content %}
 {% load crispy_forms_tags %}
-
+<h2 class="title text-center" style = "font-family: Lato">Edit your profile</h2>
+<p class = "text-center" style = "font-family: Lato">Then sign in again to see the changes!</p>
 <form method = "post">
 	{% csrf_token %}
 	{{form|crispy}}
 
 <button type="submit" class="save btn btn-success">Save changes</button>
 </form>
+{% endblock %}
