@@ -27,3 +27,12 @@ class AddFitnessForm(forms.ModelForm):
 	class Meta:
 		model = Fitness
 		fields = ('category','duration','weight',)
+
+	def clean_fitness_data(self):
+		weight = self.cleaned_data['weight']
+		time = self.cleaned_date['duration']
+		if(weight<30 or weight >500):
+			return ValidationError(_('Invalid weight entered'))
+
+		if (time<=0):
+			return ValidationError(_('Duration cannot be negative'))

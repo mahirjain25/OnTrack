@@ -21,11 +21,25 @@ class ReminderForm(forms.ModelForm):
 		model = Reminder
 		fields = ('text','due_date',)
 
+	def clean_reminder_data(self):
+		data = self.cleaned_data['due_date']
+
+		if data < datetime.date.today():
+			raise ValidationError(('Invalid date - reminder in the past'))
+
+		return data
+
 class BookForm(forms.ModelForm):
 	class Meta:
 		model = Book
 		fields = ('isbn','name','author','date_issued','date_of_return','freq',)
-
+		#Making sure return date cannot be earlier than date of issue
+		def clean_book_data(self):
+			issued = self.cleaned_data['date_issued']
+			ret = self.cleaned_date['date_of_return']
+			if(ret>issued):
+				raise ValidationError(('Date of return is before the date of issue'))
+			return ret #just in case	
 
 class NumberOfSubjectsForm(forms.ModelForm):
 	class Meta:
