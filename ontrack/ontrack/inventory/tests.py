@@ -19,6 +19,7 @@ class FitnessTest(TestCase):
     def test_negative_duration(self):
         date = datetime.date.today() - datetime.timedelta(days =1)
         duration = random.randint(30,60)
-        form_data = {'category': 'Run' ,'duration':duration, 'weight':-1}
+        weight = -1
+        form_data = {'category': 'Run' ,'duration':duration, 'weight':weight}
         form = AddFitnessForm(data = form_data)
         self.assertFalse(form.is_valid())
