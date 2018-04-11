@@ -24,6 +24,50 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="/static/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <script type="text/javascript">
+        window.onload = function() {
+  show_notif();
+};
+        function show_notif() {
+            console.log({{no_reminders}})
+            container = document.getElementsByClassName("content");
+            table = document.getElementsByTagName("TABLE")
+            var i ;
+            var row;
+            //for reminders
+            //table[1] is the table for reminders so that's why the "REMINDER" notification is hard coded. books would be table[0] i think
+            for(i=0;i<{{no_reminders}};i++)
+            {
+                row = table[1].rows[i].cells[3].innerHTML;
+                if(  row.includes({{day}}) && row.includes({{year}}))
+            {
+                table[1].rows[i].style.backgroundColor = "pink";
+                alert("Notification from OnTrack - Reminder (" +table[1].rows[i].cells[3].innerHTML +") : "+table[1].rows[i].cells[1].innerHTML);
+            }
+            }
+            // var row = table[1].rows[0].cells[3].innerHTML;
+            // if(  row.includes({{day}}) && row.includes({{year}}))
+            // {
+            //     table[1].rows[0].style.backgroundColor = "pink";
+            //     alert(table[1].rows[0].cells[1].innerHTML);
+            // }
+            // console.log(table[1].rows[0].cells[3].innerHTML.includes("April"));
+            //console.log(table[0].rows[0].cells[3].innerHTML)
+
+            for(i=0;i<{{no_books}};i++)
+            {
+                row = table[0].rows[i].cells[3].innerHTML;
+                if(  row.includes({{day}}) && row.includes({{year}}))
+            {
+                table[0].rows[i].style.backgroundColor = "pink";
+                alert("Notification from OnTrack - Book Renewal (" +table[0].rows[i].cells[3].innerHTML +") : "+table[0].rows[i].cells[1].innerHTML);
+            }
+            }
+
+
+        }
+
+    </script>
 
 </head>
 <body>
@@ -158,7 +202,7 @@
 
                             <div class="header">
                                 <h4 class="title">Weather</h4>
-                                <p class="category">It's {{temp}} ℃ with {{desc}}</p>
+                                <p class="category">It's {{temp}} ℃ with {{desc}} {{year}}</p>
 
                             </div>
                             <div class="content">
@@ -212,12 +256,12 @@
                                                     <td>Book: {{book.name}}</td>
                                                     <td class="td-actions text-right">
                                                         <td>Return By: {{book.date_of_return}}</td>
-                                                        <a href="#">
+                                                        <a href="{% url 'edit_book' pk=book.pk %}">
                                                         <button type="button" rel="tooltip" title="Edit Task" class="btn btn-info btn-simple btn-xs">
                                                             <i class="fa fa-edit"></i>
                                                         </button>
                                                         </a>
-                                                        <a href="#">
+                                                        <a href="{% url 'delete_book' pk=book.pk %}">
                                                         <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
                                                             <i class="fa fa-times"></i>
                                                         </button>

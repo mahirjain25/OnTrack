@@ -24,4 +24,5 @@ urlpatterns = [
     path('accounts/',include('django.contrib.auth.urls')),
     path('reminders/', include('reminders.urls')),
     path('inventory/', include('inventory.urls')),
+    #url("notifications/", include("pinax.notifications.urls", namespace="pinax_notifications")),
 ]

@@ -20,6 +20,7 @@ import wikiquote
 from django.contrib.auth.models import User
 import pickle
 import random
+import datetime
 
 quotes = {'Jimi Hendrix' : "When the power of love overcomes the love of power, the world will know peace.", 'Robert Frost': "The only way round is through." , 'Robert Frost': "By working faithfully eight hours a day you may eventually get to be boss and work twelve hours a day.", 'Denise Brennan-Nelson': "Someday is not a day of the week.", 'Robert Schuller': "Tough times never last, but tough people do.", 'Jamie Paolinetti': "Limitations live only in our minds. But if we use our imaginations, our possibilities become limitless.", 'Karen Lamb' :"A year from now you may wish you had started today.", 'Lao Tzu': "The journey of a thousand miles begins with one step."}
 
@@ -61,9 +62,22 @@ def dashboard(request):
 	if temperature >= 33:
 		imag = d["hot"]
 	author = random.choice(list(quotes))
+	months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 	quote = quotes[author]
+	now = datetime.datetime.now()
+	year = now.year
+	month = now.month
+	month = months[month-1]
+	day = now.day
+	minute= now.minute
+	hour = now.hour
+	if hour>12:
+		hour = hour - 12
+	rem_len = len(reminders)
+	book_len = len(books)
+
 	#quote, author = wikiquote.quote_of_the_day()
-	return render(request, template_name, {"reminders": reminders, "temp": temperature, "desc": desc, "imag": imag, "books":books, "quote": quote, "author": author})
+	return render(request, template_name, {"no_books": book_len,"no_reminders":rem_len, "reminders": reminders, "temp": temperature, "desc": desc, "imag": imag, "books":books, "quote": quote, "author": author, "year":year, "month":month, "day":day, "minute":minute ,"hour":hour})
 	
 @login_required(redirect_field_name='login')
 def reminder(request):
@@ -131,6 +145,31 @@ def new_book(request):
 	else:
 		form = BookForm()
 	return render(request,template,{"form":form})
+
+@login_required(redirect_field_name='login')
+def edit_book(request, pk):
+	
+	template = 'new_book.html'
+	book = get_object_or_404(Book, pk = pk)
+	
+	if request.method == 'POST':
+		book.delete()
+		form = ReminderForm(request.POST)
+		if form.is_valid():
+			post = form.save(commit = False)
+			post.author = request.user
+			post.save()
+			return redirect('dashboard')	
+	else:
+		form = BookForm(instance = reminder)
+	return render(request, template ,{"form":form ,"book": book})
+
+@login_required(redirect_field_name='login')
+def delete_book(request, pk):
+	query = get_object_or_404(Book, pk =  pk)
+	query.delete()
+	
+	return redirect('/accounts/dashboard')
 	
 @login_required(redirect_field_name='login')
 def user_profile(request):
