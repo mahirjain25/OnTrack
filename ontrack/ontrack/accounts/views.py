@@ -18,19 +18,26 @@ from django.contrib.auth.decorators import login_required
 from . import forms
 import wikiquote
 from django.contrib.auth.models import User
+from django.contrib import messages
 import pickle
 import random
 import datetime
 
 quotes = {'Jimi Hendrix' : "When the power of love overcomes the love of power, the world will know peace.", 'Robert Frost': "The only way round is through." , 'Robert Frost': "By working faithfully eight hours a day you may eventually get to be boss and work twelve hours a day.", 'Denise Brennan-Nelson': "Someday is not a day of the week.", 'Robert Schuller': "Tough times never last, but tough people do.", 'Jamie Paolinetti': "Limitations live only in our minds. But if we use our imaginations, our possibilities become limitless.", 'Karen Lamb' :"A year from now you may wish you had started today.", 'Lao Tzu': "The journey of a thousand miles begins with one step."}
 
-class SignUp(generic.CreateView):
-    form_class = AuthenticationForm#forms.CustomSignUp
-    success_url = reverse_lazy('login')
-    template_name = 'base.html'
+def SignUp(request):
+    if request.method == "POST":
+        form = forms.CustomSignUp
+        template_name = 'base.html'
+        if form.is_valid():
+           	post = form.save(commit=False)
+           	post.save()
+           	messages.success(request, 'Signed Up Successfully')
+           	return redirect(request,'login')
+    else:
+        form = forms.CustomSignUp
+        return render(request, 'signup', {'form':form})
 
-    def func(request):
-    	return HttpResponseRedirect("/")
 class Login(generic.CreateView):
 	form_class = AuthenticationForm
 	template_name = 'login.html'
