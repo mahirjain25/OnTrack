@@ -253,7 +253,7 @@
                                                             <label for="checkbox1"></label>
                                                         </div>
                                                     </td>
-                                                    <td>Book: {{book.name}}</td>
+                                                    <td>Book: {{book.name}}, Author: {{book.author}}</td>
                                                     <td class="td-actions text-right">
                                                         <td>Return By: {{book.date_of_return}}</td>
                                                         <a href="{% url 'edit_book' pk=book.pk %}">

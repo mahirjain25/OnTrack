@@ -161,14 +161,14 @@ def edit_book(request, pk):
 	
 	if request.method == 'POST':
 		book.delete()
-		form = ReminderForm(request.POST)
+		form = BookForm(request.POST)
 		if form.is_valid():
 			post = form.save(commit = False)
-			post.author = request.user
+			post.user = request.user
 			post.save()
 			return redirect('dashboard')	
 	else:
-		form = BookForm(instance = reminder)
+		form = BookForm(instance = book)
 	return render(request, template ,{"form":form ,"book": book})
 
 @login_required(redirect_field_name='login')

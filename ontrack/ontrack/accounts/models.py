@@ -33,14 +33,12 @@ class Reminder(models.Model):
 
 
 class Book(models.Model):
-	isbn = models.PositiveIntegerField(primary_key=True,db_column='ISBN',validators=[MaxValueValidator(9999999999999),MinValueValidator(1000000000000)])
 	name = models.CharField(db_column='Book Name', max_length=30)
 	author = models.CharField(db_column = 'Author Name',max_length=20)
 	user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 	date_issued = models.DateField(db_column='Date of Issue')
 	date_of_return = models.DateField(db_column='Date of Return')
-	freq = models.IntegerField()
-
+	
 	def publish(self):
 		self.save()
 

@@ -1,5 +1,8 @@
 {% extends 'extender.html' %}
 {% block content %}
+<h2 class="title text-center">Your Schedule Area</h2>
+                                <p class="category text-center">Let's add your timetable!</p>
+                                <a href = "{% url 'enter_subjects' %}"><button style="padding-top: 5px;">Enter your timetable</button></a>
 {% for i in timetable %}
 
 	{% if i.user.username == user.username%}

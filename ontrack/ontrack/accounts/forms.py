@@ -32,7 +32,7 @@ class ReminderForm(forms.ModelForm):
 class BookForm(forms.ModelForm):
 	class Meta:
 		model = Book
-		fields = ('isbn','name','author','date_issued','date_of_return','freq',)
+		fields = ('name','author','date_issued','date_of_return',)
 		#Making sure return date cannot be earlier than date of issue
 		def clean_book_data(self):
 			issued = self.cleaned_data['date_issued']
