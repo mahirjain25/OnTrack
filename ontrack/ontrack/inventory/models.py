@@ -120,7 +120,7 @@ class Fitness(models.Model):
     )
     
     user = models.ForeignKey(User, on_delete = models.CASCADE, default=None)
-    duration = models.IntegerField()
+    duration = models.IntegerField(validators = [MinValueValidator(1)])
     weight = models.FloatField(validators = [MinValueValidator(1)])
     calories = models.FloatField()
     category = category = models.CharField(choices=CATEGORY_CHOICES,max_length =20,blank=False,db_column = 'Category')

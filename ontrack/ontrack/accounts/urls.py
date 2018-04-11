@@ -5,6 +5,7 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path('signup/', views.SignUp,name='signup'),
+    path('login/', views.Login,name='login'),
     #path('login/', views.Login.as_view(),name='login'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('',include('django.contrib.auth.urls')),
@@ -19,6 +20,8 @@ urlpatterns = [
     path('user_profile/',views.user_profile, name = 'user_profile'),
     path('edit_user_profile/<pk>/',views.edit_user_profile, name = 'edit_user_profile'),
     path('enter_subjects/',views.enter_subjects, name = 'enter_subjects'),
+    path('edit_subjects/<pk>/',views.edit_subjects, name = 'edit_subjects'),
+    path('delete_timetable/<pk>/',views.delete_timetable, name = 'delete_timetable'),
     path('timetable/',views.timetable, name = 'timetable'),
 
 ]

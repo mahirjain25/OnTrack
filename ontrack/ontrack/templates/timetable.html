@@ -2,10 +2,13 @@
 {% block content %}
 <h2 class="title text-center">Your Schedule Area</h2>
                                 <p class="category text-center">Let's add your timetable!</p>
-                                <a href = "{% url 'enter_subjects' %}"><button style="padding-top: 5px;">Enter your timetable</button></a>
+                                <a href = "{% url 'enter_subjects' %}"><button class="btn btn-info" style="padding-top: 5px;">Enter your timetable</button></a>
+
 {% for i in timetable %}
 
 	{% if i.user.username == user.username%}
+	<a href = "{% url 'edit_subjects' pk=i.pk %}"><button class="btn btn-info" style="padding-top: 5px;">Edit your timetable</button></a>
+	<a href = "{% url 'delete_timetable' pk=i.pk %}"><button class="btn btn-warning" style="padding-top: 5px;">Delete your timetable</button></a>
 		<div class="container text-center">
 		  <h2> {{user.username}}'s Timetable:</h2>           
 		  <table class="table table-striped">

@@ -1,0 +1,40 @@
+{% extends 'extender.html' %}
+{% block content %}
+<h2 class="title text-center">Your Fitness History</h2>
+<p class="category text-center">Exercise to stimulate, not to annihilate. The world wasn't formed in a day, and neither were we. Set small goals and build upon them.
+</p>
+<a href = "{% url 'add_fitness' %}"><button class="btn btn-info" style="padding-top: 5px;">Add a fitness activity</button></a>
+
+
+		<div class="container text-center">           
+		  <table class="table table-striped">
+		    <thead>
+		      <tr>
+		      	<th>Date</th>
+		        <th>Category</th>
+		        <th>Duration</th>
+		        <th>Calories</th>
+		      </tr>
+		    </thead>
+		    {% for i in fit %}
+
+	{% if i.user.username == user.username%}
+		    <tbody>
+		      <tr>
+		      	<th>{{i.created_date}}</th>
+		        <td>{{i.category}}</td>
+		        <td>{{i.duration}}</td>
+		        <td>{{i.calories}}</td>
+		      </tr>
+
+		    </tbody>
+		    	{% endif%}
+
+
+{% endfor%}
+		  </table>
+		</div>
+
+
+{% endblock %}
+

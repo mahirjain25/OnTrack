@@ -70,14 +70,9 @@
                         <p>Give Feedback</p>
                     </a>
                 </li>
+                
                 <li style="padding-top:40px;">
-                    <a href="notifications.html">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-                <li style="padding-top:40px;">
-                    <a href="notifications.html">
+                    <a href="{% url 'fitness' %}">
                         <i class="pe-7s-bicycle"></i>
                         <p>Fitness</p>
                     </a>
@@ -131,7 +126,7 @@
                             <div class="header">
                                 <h2 class="title text-center">Your Clothing Inventory</h2>
                                 <p class="category text-center">Let's add your wardrobe!</p>
-                                <a href = "{% url 'add_clothes' %}"><button style="padding-top: 5px;">Add a clothing item</button></a>
+                                <a href = "{% url 'add_clothes' %}"><button class="btn btn-info" style="padding-top: 5px;">Add a clothing item</button></a>
 
                             </div>
                             <div class="content">

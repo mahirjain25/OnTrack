@@ -51,16 +51,6 @@ class BookTest(TestCase):
         form_data = {'date_issued':issue,'date_of_return' : renew}
         form = BookForm(data = form_data)
         self.assertFalse(form.is_valid())
-    #Test that you can't enter a char in isbn etc?
-    def test_isbn_validity(self):
-        user = User.objects.create_user('hehe')
-        issue = datetime.date.today()
-        ret = datetime.date.today() + datetime.timedelta(days =1)
-        form_data = {"user":user, "isbn":1234, "name" : "Animal Farm", "author": "George Orwell", "date_issued":issue, "date_of_return":ret, "freq":2}
-
-        form = BookForm(form_data)
-        self.assertFalse(form.is_valid())
-    	
-	    
+    
     
     

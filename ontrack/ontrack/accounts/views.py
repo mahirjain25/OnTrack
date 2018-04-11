@@ -38,9 +38,22 @@ def SignUp(request):
         form = forms.CustomSignUp
         return render(request, 'signup', {'form':form})
 
-class Login(generic.CreateView):
-	form_class = AuthenticationForm
-	template_name = 'login.html'
+
+def Login(request):
+	if request.method == "POST":
+		form = AuthenticationForm
+		template_name = 'login.html'
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.save()
+			return redirect(request,'dashboard')
+	else:
+		form = AuthenticationForm
+		return render(request, 'login.html', {'form':form})
+
+# class Login(generic.CreateView):
+# 	form_class = AuthenticationForm
+# 	template_name = 'login.html'
 
 @login_required(redirect_field_name='login')
 def dashboard(request):
@@ -220,3 +233,26 @@ def timetable(request):
 	timetable = Timetable.objects.all()
 	template_name = 'timetable.html'
 	return render(request, template_name,{'timetable': timetable})
+
+@login_required(redirect_field_name='login')
+def edit_subjects(request, pk):
+	
+	template = 'enter_subjects.html'
+	timetable = get_object_or_404(Timetable, pk = pk)
+	
+	if request.method == 'POST':
+		timetable.delete()
+		form = TimetableForm(request.POST)
+		if form.is_valid():
+			post = form.save(commit = False)
+			post.user = request.user
+			post.save()
+			return redirect('timetable')	
+	else:
+		form = TimetableForm(instance = timetable)
+	return render(request, template ,{"form":form ,"timetable": timetable})
+
+@login_required(redirect_field_name='login')
+def delete_timetable(request, pk):
+	query = get_object_or_404(Timetable, pk =  pk)
+	query.delete()

@@ -120,7 +120,7 @@ def fitness_view(request):
 	plt.savefig("./accounts/test.png",bbox_inches='tight')
 	
 
-	template_name = 'fitness.html'
+	template_name = 'fitwork.html'
 	return render(request,template_name, {"fit": fit})
 
 @login_required(redirect_field_name='login')

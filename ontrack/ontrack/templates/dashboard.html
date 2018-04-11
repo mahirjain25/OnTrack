@@ -115,13 +115,7 @@
                     </a>
                 </li>
                 <li style="padding-top:40px;">
-                    <a href="#">
-                        <i class="pe-7s-bell"></i>
-                        <p>Notifications</p>
-                    </a>
-                </li>
-                <li style="padding-top:40px;">
-                    <a href="/inventory/add_fitness">
+                    <a href="/inventory/fitness">
                         <i class="pe-7s-bicycle"></i>
                         <p>Fitness</p>
                     </a>
@@ -202,7 +196,7 @@
 
                             <div class="header">
                                 <h4 class="title">Weather</h4>
-                                <p class="category">It's {{temp}} ℃ with {{desc}} {{year}}</p>
+                                <p class="category">It's {{temp}} ℃ with {{desc}}</p>
 
                             </div>
                             <div class="content">
@@ -237,7 +231,7 @@
                             <div class="header">
                                 <h4 class="title">Books Issued</h4>
                                 <p class="category">Renew them on time!</p>
-                                <a href = "/accounts/new_book"><button >New Book</button></a>
+                                <a href = "/accounts/new_book"><button class="btn btn-info" >New Book</button></a>
 
                             </div>
                             <div class="content">
@@ -245,7 +239,7 @@
                                     <table class="table">
                                         <tbody>
                                             {% for book in books %}
-
+                                                {% if user.username == book.user.username %}
                                                 <tr>
                                                     <td>
                                                         <div class="checkbox">
@@ -268,6 +262,7 @@
                                                         </a>
                                                     </td>
                                                 </tr>
+                                                {% endif %}
                                             {% endfor %}
                                             
                                         </tbody>
@@ -288,7 +283,7 @@
                             <div class="header">
                                 <h4 class="title">My To-Do List!</h4>
                                 <p class="category"> Don't forget to complete all these!</p>
-                                <a href = "{% url 'new_reminder' %}"><button >New To-Do</button></a>
+                                <a href = "{% url 'new_reminder' %}"><button class="btn btn-info" >New To-Do</button></a>
 
                             </div>
                             <div class="content">
@@ -336,7 +331,7 @@
                                 <h3 class="title">Need a tip?</h3>
                                 <p class="category">We're always there to keep you OnTrack :)</p>
                             </div>
-                           	<h3 class="text-center" style = "color: deep-blue;"><a href="#">Click Here to let our suggestion engine do it's thing!</a></h3>
+                           	<h3 class="text-center" style = "color: deep-blue;"><a href="http://localhost:8888/?token=6b30d674c9e99619b6392df5f8da88185da5801e9669efb8">Click Here to let our suggestion engine do it's thing!</a></h3>
                         </div>
                     </div>
 
